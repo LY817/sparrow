@@ -1,0 +1,5 @@
+eureka:
+  client:
+    service-url: ["http://127.0.0.1:8761/eureka/"]
+  instance:
+    appname: sparrow-demo

@@ -1,0 +1,12 @@
+eureka:
+  client:
+    service-url: ["http://127.0.0.1:8761/eureka/"]
+spring:
+  cloud:
+    config:
+      name: sparrow-config
+      profile: prod
+      label: master
+      server:
+        git:
+          uri: https://gitee.com/luoyu817/sparrow-config.git
