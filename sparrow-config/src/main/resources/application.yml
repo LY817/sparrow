@@ -1,4 +1,7 @@
 server:
   port: 11111
-debug: true
+spring:
+  application:
+    name: sparrow-config
+
 

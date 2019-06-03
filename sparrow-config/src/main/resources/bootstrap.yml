@@ -10,3 +10,6 @@ spring:
       server:
         git:
           uri: https://gitee.com/luoyu817/sparrow-config.git
+          username: luoyu817
+          password: luoyu565892
+          search-paths: /**/config
