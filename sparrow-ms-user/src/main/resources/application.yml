@@ -6,6 +6,6 @@ management:
       base-path: /
 spring:
   application:
-    name: sparrowDemoService
+    name: sparrow-ms-user
   profiles:
-    active: dev # »á±»spring.cloud.config.profileÖ¸¶¨µÄÔ¶³ÌÅäÖÃÎÄ¼şÌæ´ú
+    active: dev # ä¼šè¢«spring.cloud.config.profileæŒ‡å®šçš„è¿œç¨‹é…ç½®æ–‡ä»¶æ›¿ä»£

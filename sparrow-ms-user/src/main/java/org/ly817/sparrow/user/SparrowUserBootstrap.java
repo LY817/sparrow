@@ -1,4 +1,4 @@
-package org.ly817.sparrow.demo;
+package org.ly817.sparrow.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,15 +9,21 @@ import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author LuoYu
+ * @date 2019/06/05 11:00
+ * <p>
+ * Description:
+ * 用户微服务启动类
+ */
 @SpringBootApplication
 @EnableEurekaClient
 @RibbonClients({
-        @RibbonClient("name=")
+        @RibbonClient("name=sparrow-ms-device")
 })
-public class SparrowEurekaClientApplication {
-
+public class SparrowUserBootstrap {
     public static void main(String[] args) {
-        SpringApplication.run(SparrowEurekaClientApplication.class, args);
+        SpringApplication.run(SparrowUserBootstrap.class,args);
     }
 
     @Bean
