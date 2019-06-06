@@ -1,10 +1,15 @@
 package org.ly817.sparrow.user.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.web.bind.annotation.RestController;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import org.ly817.sparrow.api.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import java.util.Random;
+import java.util.concurrent.TimeoutException;
+
 
 /**
  * @author LuoYu
@@ -13,15 +18,46 @@ import java.io.IOException;
  * Description:
  */
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    LoadBalancerClient loadBalancerClient;
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private void test() throws IOException {
-        loadBalancerClient.choose("sparrow-device");
-        loadBalancerClient.execute("sparrow-device",instance -> {
-            return "123";
-        });
+    @PostMapping("/add")
+    public User addUser(User user){
+        return null;
+    }
+
+    @GetMapping("/find/{userId}")
+    @HystrixCommand(
+        commandProperties = {
+            // 超时时间为100ms
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "100")
+        },
+        fallbackMethod = "fallBackFindUser"
+    )
+    public User findUserById(@PathVariable Long userId) throws InterruptedException {
+        User user = new User();
+        if (userId == 1000L) {
+            user.setUserId(1000L);
+            user.setUserName("luoyu");
+            user.setPassword("luoyu666");
+        }
+        // 超时容错
+        Random random = new Random();
+        long execTime = random.nextInt(200);
+        logger.error(execTime + "");
+        Thread.sleep(execTime);
+        return user;
+    }
+
+    /**
+     * fallbackMethod方法与原方法
+     */
+    public User fallBackFindUser(Long userId){
+        User user = new User();
+        user.setUserName("back");
+        user.setUserId(0L);
+        return user;
     }
 }

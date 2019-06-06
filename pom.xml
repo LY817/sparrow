@@ -19,6 +19,7 @@
         <module>sparrow-config</module>
         <module>sparrow-ms-user</module>
         <module>sparrow-ms-device</module>
+        <module>sparrow-api</module>
         <!--<module>sparrow-ms-gps-analysis</module>-->
         <!--<module>sparrow-iot-gps-accept</module>-->
     </modules>

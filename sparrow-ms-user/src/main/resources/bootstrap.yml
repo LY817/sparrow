@@ -1,13 +1,13 @@
 eureka:
   client:
     service-url: ["http://127.0.0.1:8761/eureka/"]
-spring:
-  cloud:
-    config:
-      # 从注册中心发现config服务
-      discovery:
-        service-id: sparrow-config
-        enabled: true
-      # 指定对应配置文件
-      label: master
-      profile: dev
+#spring:
+#  cloud:
+#    config:
+#      # 从注册中心发现config服务
+#      discovery:
+#        service-id: sparrow-config
+#        enabled: true
+#      # 指定对应配置文件
+#      label: master
+#      profile: dev
