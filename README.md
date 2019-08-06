@@ -1,37 +1,28 @@
 # sparrow
+最小化业务逻辑，用来测试微服务各个组件
 
-#### 介绍
-spring cloud技术栈+docker发布 练手
+## 介绍
+SpringCloud技术栈+docker容器化+k8s发布 练手项目
+### 项目结构
 
-#### 软件架构
-软件架构说明
+## SpringCloud采坑
+### SpringCloud版本问题
+Spring新的的命名规则（boot和cloud）
+2.0前后依赖包的名字会有改变比如
 
+`spring-cloud-starter-eureka`=>`spring-cloud-starter-netflix-eureka-server`和`spring-cloud-starter-netflix-eureka-client`
 
-#### 安装教程
+####依赖包的命名规范
+官方提供的starter 
+```
+spring-boot-starter-xxxx
+spring-cloud-starter-{子项目名称}-xxxx
+```
+非官方出的starter
+```
+xxxx-spring-boot-starter
+```
+### eureka注册中心 服务发现延时高
 
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本仓库
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 容器化采坑
+### docker环境下的微服务间通信问题

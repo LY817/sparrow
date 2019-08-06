@@ -12,7 +12,7 @@
     <artifactId>sparrow-eureka-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sparrow-eureka-client</name>
-    <description>eureka 客户端</description>
+    <description>eureka 客户端模板</description>
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

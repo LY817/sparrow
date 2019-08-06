@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
  * Description:
  */
 @RestController
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);

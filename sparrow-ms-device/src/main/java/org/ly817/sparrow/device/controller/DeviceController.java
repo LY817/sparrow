@@ -2,6 +2,7 @@ package org.ly817.sparrow.device.controller;
 
 import org.ly817.sparrow.api.model.Device;
 import org.ly817.sparrow.api.model.User;
+import org.ly817.sparrow.api.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class DeviceController {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    IUserService userService;
     /**
      * 注册设备
      * 微服务调用demo
@@ -49,7 +53,8 @@ public class DeviceController {
 //            return response.getBody();
 //        });
         // 添加LoadBalanced注解的RestTemplate根据服务名访问到负载均衡实例
-        User user = restTemplate.getForEntity("http://sparrow-ms-user"+"/user/find/"+userId,User.class).getBody();
+//        User user = restTemplate.getForEntity("http://sparrow-ms-user"+"/user/find/"+userId,User.class).getBody();
+        User user = userService.findUserById(userId);
         device.setUserId(user.getUserId());
         return device;
     }
