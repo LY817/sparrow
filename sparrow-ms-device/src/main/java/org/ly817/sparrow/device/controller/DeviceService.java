@@ -2,6 +2,7 @@ package org.ly817.sparrow.device.controller;
 
 import org.ly817.sparrow.api.model.Device;
 import org.ly817.sparrow.api.model.User;
+import org.ly817.sparrow.api.service.IDeviceService;
 import org.ly817.sparrow.api.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +24,9 @@ import java.io.IOException;
  * Description:
  */
 @RestController
-@RequestMapping("/device")
-public class DeviceController {
+public class DeviceService implements IDeviceService {
 
-    private final Logger logger = LoggerFactory.getLogger(DeviceController.class);
+    private final Logger logger = LoggerFactory.getLogger(DeviceService.class);
 
     @Autowired
     LoadBalancerClient loadBalancerClient;

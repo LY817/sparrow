@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Random;
-import java.util.concurrent.TimeoutException;
 
 
 /**
@@ -16,7 +15,12 @@ import java.util.concurrent.TimeoutException;
  * @date 2019/06/05 12:45
  * <p>
  * Description:
+ *
+ * update 服务提供方和消费方feign是用同一个接口
+ * 公用接口 @see org.ly817.sparrow.api.service.IUserService
+ * 服务提供者实现 @see org.ly817.sparrow.user.service.UserFeignServiceImpl
  */
+@Deprecated
 @RestController
 //@RequestMapping("/user")
 public class UserController {

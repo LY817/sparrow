@@ -4,6 +4,7 @@ import org.ly817.sparrow.api.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author LuoYu
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
  * 用户服务接口
  */
 @FeignClient(value = "sparrow-ms-user")
+@RequestMapping("sparrow-ms-user")
 public interface IUserService {
 
     /**
      * 根据用户id查询用户属性
-     * @param userId 用户主键id
+     * @param userId 用户主键id @PathVariable注解必须在实现类中
      * @return User
      */
     @GetMapping("/user/{userId}")

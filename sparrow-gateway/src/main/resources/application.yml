@@ -21,3 +21,6 @@ eureka:
       
 zuul:
   retryable: true
+ribbon:
+  eager-load:
+    enabled: true
