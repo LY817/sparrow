@@ -1,0 +1,11 @@
+server:
+  port: 10001
+management:
+  endpoints:
+    web:
+      base-path: /
+spring:
+  application:
+    name: sparrow-ms-inventory
+#  profiles:
+#    active: dev # 会被spring.cloud.config.profile指定的远程配置文件替代

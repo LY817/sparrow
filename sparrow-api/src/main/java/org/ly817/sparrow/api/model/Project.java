@@ -1,12 +1,14 @@
 package org.ly817.sparrow.api.model;
 
+import java.io.Serializable;
+
 /**
  * @author LuoYu
  * @date 2019/06/06 9:16
  * <p>
  * Description:
  */
-public class Project {
+public class Project implements Serializable {
     private Long projectId;
 
     private String projectName;

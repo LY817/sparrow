@@ -1,5 +1,7 @@
 package org.ly817.sparrow.api.model;
 
+import java.io.Serializable;
+
 /**
  * @author LuoYu
  * @date 2019/06/06 8:49
@@ -7,12 +9,14 @@ package org.ly817.sparrow.api.model;
  * Description:
  * 用户实体类
  */
-public class User {
+public class User implements Serializable {
     private Long userId;
 
     private String userName;
 
     private String password;
+
+    private Long creditScore;
 
     public Long getUserId() {
         return userId;
@@ -36,5 +40,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getCreditScore() {
+        return creditScore;
+    }
+
+    public void setCreditScore(Long creditScore) {
+        this.creditScore = creditScore;
     }
 }

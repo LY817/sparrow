@@ -1,12 +1,14 @@
 package org.ly817.sparrow.api.model;
 
+import java.io.Serializable;
+
 /**
  * @author LuoYu
  * @date 2019/06/06 9:12
  * <p>
  * Description:
  */
-public class Device {
+public class Device  implements Serializable {
     private Long deviceId;
 
     private Long imei;
