@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.ly817.sparrow.global.handler.GlobalExceptionHandler
+org.ly817.sparrow.global.GlobalAutoConfiguration

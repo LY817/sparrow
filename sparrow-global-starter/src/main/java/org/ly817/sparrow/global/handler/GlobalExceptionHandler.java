@@ -23,15 +23,14 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2019/08/15 13:30
  * <p>
  * Description:
+ * 全局处理异常
  */
-@RestController
 @ControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
 
     private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @Resource
-    private MessageSource messageSource;
 
     @ExceptionHandler({org.springframework.web.bind.MissingServletRequestParameterException.class})
     @ResponseBody
@@ -42,14 +41,12 @@ public class GlobalExceptionHandler {
         response.setContentType("application/json;charset=UTF-8");
         APIResponse result = new APIResponse();
         result.setCode(APIExceptionType.BAD_REQUEST.getCode());
-        result.setMsg(
-                messageSource.getMessage(APIExceptionType.BAD_REQUEST.getMsg(),
-                        null, LocaleContextHolder.getLocale()) + e.getParameterName());
+        result.setMsg(APIExceptionType.BAD_REQUEST.getMsg());
         return result;
     }
 
-    @ExceptionHandler(Exception.class)
-    @ResponseBody
+//    @ExceptionHandler(Exception.class)
+//    @ResponseBody
     public APIResponse processDefaultException(HttpServletResponse response,
                                                Exception e) {
         logger.error("Server exception", e);
@@ -57,8 +54,7 @@ public class GlobalExceptionHandler {
         response.setContentType("application/json;charset=UTF-8");
         APIResponse result = new APIResponse();
         result.setCode(APIExceptionType.INTERNAL_SERVER_ERROR.getCode());
-        result.setMsg(messageSource.getMessage(APIExceptionType.INTERNAL_SERVER_ERROR.getMsg(), null,
-                LocaleContextHolder.getLocale()));
+        result.setMsg(APIExceptionType.INTERNAL_SERVER_ERROR.getMsg());
         return result;
     }
 
@@ -70,8 +66,7 @@ public class GlobalExceptionHandler {
         response.setStatus(HttpStatus.ACCEPTED.value());
         response.setContentType("application/json;charset=UTF-8");
         result.setCode(e.getType().getCode());
-        String message = messageSource.getMessage(e.getMessage(),
-                null, LocaleContextHolder.getLocale());
+        String message = e.getMessage();
         result.setMsg(message);
         logger.error("Known exception", e.getMessage(), e);
         return result;
