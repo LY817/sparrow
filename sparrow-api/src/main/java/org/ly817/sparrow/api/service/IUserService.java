@@ -1,5 +1,6 @@
 package org.ly817.sparrow.api.service;
 
+import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,6 @@ public interface IUserService {
      * @return User
      */
     @GetMapping("/user/{userId}")
-    User findUserById(Long userId);
+    User findUserById(Long userId) throws APIException;
 
 }

@@ -1,5 +1,6 @@
 package org.ly817.sparrow.api.service;
 
+import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Order;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ public interface IOrderService {
      * 创建订单
      * v1:最简化版本：order -> inventory -> credit 调用链路
      * - 核查 + 预减库存
-     * @see IInventoryService#checkInventory(Long)
+     * @see IInventoryService#checkInventory(Long, Integer)
      * - 计算金额
      *
      * - 生成订单号
@@ -33,5 +34,5 @@ public interface IOrderService {
      * @param order
      */
     @PostMapping("add")
-    void addOrder(Order order);
+    void addOrder(Order order) throws APIException;
 }

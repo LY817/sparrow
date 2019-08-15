@@ -24,6 +24,8 @@
         <module>sparrow-ms-order</module>
         <module>sparrrow-ms-inventory</module>
         <module>sparrow-ms-credit</module>
+        <module>sparrow-global-starter</module>
+        <module>sparrow-common</module>
         <!--<module>sparrow-ms-gps-analysis</module>-->
         <!--<module>sparrow-iot-gps-accept</module>-->
     </modules>
