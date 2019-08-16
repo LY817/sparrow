@@ -1,5 +1,9 @@
 package org.ly817.sparrow.api.service;
 
+import org.ly817.sparrow.api.exception.APIException;
+import org.ly817.sparrow.api.model.Device;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -9,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Description:
  * 设备微服务接口
  */
-@RequestMapping("/device")
+@FeignClient(value = "sparrow-ms-device")
+@RequestMapping("sparrow-ms-device")
 public interface IDeviceService {
+
+    @GetMapping("/register/{imei}/{userId}")
+    Device registerDevice(String imei, Long userId) throws APIException;
+
 }

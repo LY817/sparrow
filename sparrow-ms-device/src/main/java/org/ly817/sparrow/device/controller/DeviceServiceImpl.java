@@ -1,5 +1,6 @@
 package org.ly817.sparrow.device.controller;
 
+import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Device;
 import org.ly817.sparrow.api.model.User;
 import org.ly817.sparrow.api.service.IDeviceService;
@@ -8,14 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.ws.Response;
-import java.io.IOException;
 
 /**
  * @author LuoYu
@@ -24,15 +22,9 @@ import java.io.IOException;
  * Description:
  */
 @RestController
-public class DeviceService implements IDeviceService {
+public class DeviceServiceImpl implements IDeviceService {
 
-    private final Logger logger = LoggerFactory.getLogger(DeviceService.class);
-
-    @Autowired
-    LoadBalancerClient loadBalancerClient;
-
-    @Autowired
-    RestTemplate restTemplate;
+    private final Logger logger = LoggerFactory.getLogger(DeviceServiceImpl.class);
 
     @Autowired
     IUserService userService;
@@ -40,8 +32,9 @@ public class DeviceService implements IDeviceService {
      * 注册设备
      * 微服务调用demo
      */
-    @PostMapping("/register")
-    public Device registerDevice(String imei,Long userId) throws IOException {
+    @Override
+    public Device registerDevice(@PathVariable String imei,
+                                 @PathVariable Long userId) throws APIException {
         // userId验证
         Device device = new Device();
         // 使用loadBalancerClient自定义实现服务调用
