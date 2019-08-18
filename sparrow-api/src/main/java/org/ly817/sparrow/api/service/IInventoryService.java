@@ -3,16 +3,12 @@ package org.ly817.sparrow.api.service;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@FeignClient(value = "sparrow-ms-inventory")
-@RequestMapping("sparrow-ms-inventory")
+@RequestMapping("/inventory")
 public interface IInventoryService {
 
     /**
@@ -25,15 +21,18 @@ public interface IInventoryService {
      * 根据商品id查询商品
      * @param productId
      */
-    @GetMapping("/product/{productId}")
-    Product getProduct(@PathVariable Long productId) throws APIException;
+//    @GetMapping("/product/{productId}")
+    @RequestMapping(value = "/product/{productId}",method = RequestMethod.GET)
+    Product getProduct(@PathVariable("productId") Long productId) throws APIException;
 
     /**
      * 核查 + 预减库存
      * @param productId 产品id
      */
-    @GetMapping("/inventory/check/{productId}/{amount}")
-    void checkInventory(@PathVariable Long productId,@PathVariable Integer amount) throws APIException;
+//    @GetMapping("/inventory/check/{productId}/{amount}")
+    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
+    void checkInventory(@PathVariable("productId") Long productId,
+                        @PathVariable("amount") Integer amount) throws APIException;
 
     /**
      *

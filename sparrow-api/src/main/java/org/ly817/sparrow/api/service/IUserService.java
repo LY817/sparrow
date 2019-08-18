@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Description:
  * 用户服务接口
  */
-@FeignClient(value = "sparrow-ms-user")
-@RequestMapping("sparrow-ms-user")
+@RequestMapping("user")
 public interface IUserService {
 
     /**

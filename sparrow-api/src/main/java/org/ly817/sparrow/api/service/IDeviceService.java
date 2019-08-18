@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Description:
  * 设备微服务接口
  */
-@FeignClient(value = "sparrow-ms-device")
-@RequestMapping("sparrow-ms-device")
+@RequestMapping("device")
 public interface IDeviceService {
 
     @GetMapping("/register/{imei}/{userId}")

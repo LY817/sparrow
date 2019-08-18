@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@FeignClient(value = "sparrow-ms-order")
-@RequestMapping("sparrow-ms-order")
+@RequestMapping("order")
 public interface IOrderService {
 
     /**

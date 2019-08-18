@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@FeignClient(value = "sparrow-ms-credit")
-@RequestMapping("sparrow-ms-credit")
+@RequestMapping("credit")
 public interface ICreditService {
 
     /**

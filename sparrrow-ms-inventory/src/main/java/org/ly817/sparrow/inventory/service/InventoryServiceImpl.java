@@ -34,13 +34,14 @@ public class InventoryServiceImpl implements IInventoryService {
     }
 
     @Override
-    public Product getProduct(@PathVariable Long productId) {
+    public Product getProduct(@PathVariable("productId") Long productId) {
         Object product = redisTemplate.opsForHash().get("product", productId);
         return (Product) product;
     }
 
     @Override
-    public void checkInventory(@PathVariable Long productId, @PathVariable Integer amount) throws APIException {
+    public void checkInventory(@PathVariable("productId") Long productId,
+                               @PathVariable("amount") Integer amount) throws APIException {
         Product product = (Product) redisTemplate.opsForHash().get("product", productId);
         if (product != null) {
             if (product.getInventory() >= amount) {
@@ -55,6 +56,6 @@ public class InventoryServiceImpl implements IInventoryService {
 
     @Override
     public void deductInventory() {
-
+        System.out.println("deductInventory");
     }
 }
