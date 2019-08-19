@@ -1,20 +1,19 @@
-package org.ly817.sparrow.global.handler;
+package org.ly817.sparrow.global.exception;
 
 import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

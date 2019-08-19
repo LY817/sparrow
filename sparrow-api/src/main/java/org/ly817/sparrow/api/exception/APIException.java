@@ -10,7 +10,7 @@ import org.ly817.sparrow.api.enums.APIExceptionType;
  * 异常统一处理
  * 将逻辑异常封装成API状态码中的
  */
-public class APIException extends Throwable {
+public class APIException extends Exception {
 
     private String code;
 
@@ -23,6 +23,7 @@ public class APIException extends Throwable {
 
     public APIException(APIExceptionType type){
         super(type.getMsg());
+        this.type = type;
         this.code = type.getCode();
     }
 

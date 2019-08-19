@@ -1,5 +1,6 @@
 package org.ly817.sparrow.api.service;
 
+import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -21,18 +22,18 @@ public interface IInventoryService {
      * 根据商品id查询商品
      * @param productId
      */
-//    @GetMapping("/product/{productId}")
-    @RequestMapping(value = "/product/{productId}",method = RequestMethod.GET)
+    @GetMapping("/product/{productId}")
+//    @RequestMapping(value = "/product/{productId}",method = RequestMethod.GET)
     Product getProduct(@PathVariable("productId") Long productId) throws APIException;
 
     /**
      * 核查 + 预减库存
      * @param productId 产品id
      */
-//    @GetMapping("/inventory/check/{productId}/{amount}")
-    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
-    void checkInventory(@PathVariable("productId") Long productId,
-                        @PathVariable("amount") Integer amount) throws APIException;
+    @GetMapping("/inventory/check/{productId}/{amount}")
+//    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
+    APIResponse checkInventory(@PathVariable("productId") Long productId,
+                               @PathVariable("amount") Integer amount) throws APIException;
 
     /**
      *

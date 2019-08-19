@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class APIResponse implements Serializable {
 
-    private String code;
+    private String code = "200";
 
     private String msg;
 

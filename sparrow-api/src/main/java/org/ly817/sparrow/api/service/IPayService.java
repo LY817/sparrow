@@ -1,6 +1,5 @@
 package org.ly817.sparrow.api.service;
 
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**

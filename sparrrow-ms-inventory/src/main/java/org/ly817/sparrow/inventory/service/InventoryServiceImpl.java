@@ -1,5 +1,6 @@
 package org.ly817.sparrow.inventory.service;
 
+import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Product;
@@ -40,18 +41,23 @@ public class InventoryServiceImpl implements IInventoryService {
     }
 
     @Override
-    public void checkInventory(@PathVariable("productId") Long productId,
-                               @PathVariable("amount") Integer amount) throws APIException {
+    public APIResponse checkInventory(@PathVariable("productId") Long productId,
+                                      @PathVariable("amount") Integer amount) throws APIException {
+        APIResponse response = new APIResponse();
+        logger.error("============checkInventory===========");
         Product product = (Product) redisTemplate.opsForHash().get("product", productId);
         if (product != null) {
             if (product.getInventory() >= amount) {
                 product.setInventory(product.getInventory() - amount);
+                redisTemplate.opsForHash().put("product",productId,product);
+                response.setData(product);
             } else {
                 throw new APIException(APIExceptionType.INVENTORY_NOT_ENOUGH);
             }
         } else {
             throw new APIException(APIExceptionType.NPE, productId + "");
         }
+        return response;
     }
 
     @Override
