@@ -16,7 +16,7 @@ public class APIException extends Exception {
 
     private APIExceptionType type;
 
-    public APIException(String message, String code) {
+    public APIException(String code, String message) {
         super(message);
         this.code = code;
     }

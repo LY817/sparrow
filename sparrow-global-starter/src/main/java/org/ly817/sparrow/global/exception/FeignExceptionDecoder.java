@@ -7,6 +7,8 @@ import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;
 import org.ly817.sparrow.api.exception.APIException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -15,9 +17,13 @@ import org.springframework.context.annotation.Configuration;
  * <p>
  * Description:
  * feign调用异常解析
+ * Error Decoders are invoked only when a response is received and the response code is not 2xx
+ * 只有当http响应状态码不是2xx才会进行解析
  */
 @Configuration
 public class FeignExceptionDecoder implements ErrorDecoder {
+
+    private final Logger logger = LoggerFactory.getLogger(FeignExceptionDecoder.class);
     /**
      *
      * @param methodKey
@@ -25,19 +31,19 @@ public class FeignExceptionDecoder implements ErrorDecoder {
      * @return
      */
     @Override
-    public Exception decode(String methodKey, Response response) {
+    public APIException decode(String methodKey, Response response) {
         try {
             if (response.body() != null) {
                 JSONObject apiResponseJson = JSON.parseObject(Util.toString(response.body().asReader()));
                 if (!"200".equals(apiResponseJson.getString("code"))) {
-                    return new APIException(apiResponseJson.getString("msg")
-                                            ,apiResponseJson.getString("code"));
+                    return new APIException(apiResponseJson.getString("code"),
+                                            apiResponseJson.getString("msg"));
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return FeignException.errorStatus(methodKey, response);
+        logger.error("出现未知异常 调用地址：{}",methodKey);
+        return new APIException("未知异常 请联系管理员 调用地址：" + methodKey,"666");
     }
 }

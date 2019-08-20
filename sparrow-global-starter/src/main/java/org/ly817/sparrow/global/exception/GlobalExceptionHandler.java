@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2019/08/15 13:30
  * <p>
  * Description:
- * 全局处理异常
+ * controller处理异常
  */
 @ControllerAdvice
 @ResponseBody
@@ -44,45 +44,19 @@ public class GlobalExceptionHandler {
         return result;
     }
 
-//    @ExceptionHandler(Exception.class)
-//    @ResponseBody
-    public APIResponse processDefaultException(HttpServletResponse response,
-                                               Exception e) {
-        logger.error("Server exception", e);
-        response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        response.setContentType("application/json;charset=UTF-8");
-        APIResponse result = new APIResponse();
-        result.setCode(APIExceptionType.INTERNAL_SERVER_ERROR.getCode());
-        result.setMsg(APIExceptionType.INTERNAL_SERVER_ERROR.getMsg());
-        return result;
-    }
-
     @ExceptionHandler(APIException.class)
     @ResponseBody
     public APIResponse processApiException(HttpServletResponse response,
                                            APIException e) {
         APIResponse result = new APIResponse();
-        response.setStatus(HttpStatus.ACCEPTED.value());
+        // HttpStatus 5xx没有涉及512 表示业务逻辑错误
+        response.setStatus(512);
         response.setContentType("application/json;charset=UTF-8");
-        result.setCode(e.getType().getCode());
+//        result.setCode(e.getType().getCode());
+        result.setCode(e.getCode());
         String message = e.getMessage();
         result.setMsg(message);
         logger.error("Known exception", e.getMessage(), e);
         return result;
     }
-
-    /**
-     * 内部微服务异常统一处理方法
-     */
-//    @ExceptionHandler(InternalApiException.class)
-//    @ResponseBody
-//    public APIResponse processMicroServiceException(HttpServletResponse response,
-//                                                    InternalApiException e) {
-//        response.setStatus(HttpStatus.OK.value());
-//        response.setContentType("application/json;charset=UTF-8");
-//        APIResponse result = new APIResponse();
-//        result.setCode(e.getCode());
-//        result.setMsg(e.getMessage());
-//        return result;
-//    }
 }
