@@ -39,7 +39,7 @@ public class OrderServiceImpl implements IOrderService {
         order.setOrderId(UUIDUtil.getUUID());
         inventoryService.checkInventory(order.getProductId(),order.getNumber());
         payService.payCheck("",13.4d);
-        creditService.addCreditScore(order.getUserId(),);
+
 //        inventoryService.deductInventory();
     }
 }
