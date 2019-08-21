@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 用户实体类
  */
 public class User implements Serializable {
-    private Long userId;
+    private String userId;
 
     private String userName;
 
@@ -18,11 +18,11 @@ public class User implements Serializable {
 
     private Long creditScore;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

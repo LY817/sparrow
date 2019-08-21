@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Description:
  */
 public class Product  implements Serializable {
-    private Long productId;
+    private String productId;
 
     private String productName;
 
@@ -41,11 +41,11 @@ public class Product  implements Serializable {
         this.price = price;
     }
 
-    public Long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 

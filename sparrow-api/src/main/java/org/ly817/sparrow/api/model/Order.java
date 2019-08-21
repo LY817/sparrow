@@ -22,9 +22,9 @@ public class Order  implements Serializable {
      */
     private String paySerialId;
 
-    private Long userId;
+    private String userId;
 
-    private Long productId;
+    private String productId;
 
     /**
      * 产品数量
@@ -52,19 +52,19 @@ public class Order  implements Serializable {
         this.orderId = orderId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
