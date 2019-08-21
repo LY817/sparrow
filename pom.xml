@@ -22,12 +22,11 @@
         <module>sparrow-api</module>
         <module>sparrow-gateway</module>
         <module>sparrow-ms-order</module>
-        <module>sparrrow-ms-inventory</module>
+        <module>sparrow-ms-inventory</module>
         <module>sparrow-ms-credit</module>
         <module>sparrow-global-starter</module>
         <module>sparrow-common</module>
-        <!--<module>sparrow-ms-gps-analysis</module>-->
-        <!--<module>sparrow-iot-gps-accept</module>-->
+        <module>sparrow-ms-pay</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

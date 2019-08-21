@@ -14,11 +14,12 @@ public interface IOrderService {
     /**
      * 创建订单
      * v1:最简化版本：order -> inventory -> credit 调用链路
+     * - 生成订单号
      * - 核查 + 预减库存
      * @see IInventoryService#checkInventory(Long, Integer)
      * - 计算金额
      *
-     * - 生成订单号
+
      *
      * - 调用付款接口
      * @see IPayService

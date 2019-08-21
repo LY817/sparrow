@@ -13,14 +13,14 @@ import java.io.Serializable;
  */
 public class Order  implements Serializable {
 
-    private Long orderId;
+    private String orderId;
 
     private OrderSts orderSts;
 
     /**
      * 交易流水号
      */
-    private Long paySerialId;
+    private String paySerialId;
 
     private Long userId;
 
@@ -36,19 +36,19 @@ public class Order  implements Serializable {
      */
     private Double amount;
 
-    public Long getPaySerialId() {
+    public String getPaySerialId() {
         return paySerialId;
     }
 
-    public void setPaySerialId(Long paySerialId) {
+    public void setPaySerialId(String paySerialId) {
         this.paySerialId = paySerialId;
     }
 
-    public Long getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 
