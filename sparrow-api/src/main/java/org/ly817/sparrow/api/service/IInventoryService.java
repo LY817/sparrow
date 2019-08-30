@@ -24,7 +24,7 @@ public interface IInventoryService {
      */
     @GetMapping("/product/{productId}")
 //    @RequestMapping(value = "/product/{productId}",method = RequestMethod.GET)
-    Product getProduct(@PathVariable("productId") Long productId) throws APIException;
+    Product getProduct(@PathVariable("productId") String productId) throws APIException;
 
     /**
      * 核查 + 预减库存
@@ -32,7 +32,7 @@ public interface IInventoryService {
      */
     @GetMapping("/inventory/check/{productId}/{amount}")
 //    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
-    APIResponse checkInventory(@PathVariable("productId") Long productId,
+    APIResponse checkInventory(@PathVariable("productId") String productId,
                                @PathVariable("amount") Integer amount) throws APIException;
 
     /**
