@@ -1,9 +1,6 @@
 package org.ly817.sparrow.order;
 
-import org.ly817.sparrow.api.fegin.FCreditService;
 import org.ly817.sparrow.api.fegin.FInventoryService;
-import org.ly817.sparrow.api.fegin.FPayService;
-import org.ly817.sparrow.api.service.IInventoryService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -21,15 +18,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @RibbonClients({
-        @RibbonClient("name=sparrow-ms-inventory"),
-        @RibbonClient("name=sparrow-ms-pay"),
-        @RibbonClient("name=sparrow-ms-credit")
+        @RibbonClient("name=sparrow-ms-inventory")
 })
 @EnableFeignClients(
         basePackageClasses = {
-                FInventoryService.class,
-                FPayService.class,
-                FCreditService.class
+                FInventoryService.class
         }
 )
 public class SparrowOrderBootstrap {

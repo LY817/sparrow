@@ -26,8 +26,8 @@ public class DeviceServiceImpl implements IDeviceService {
 
     private final Logger logger = LoggerFactory.getLogger(DeviceServiceImpl.class);
 
-    @Autowired
-    IUserService userService;
+//    @Autowired
+//    IUserService userService;
     /**
      * 注册设备
      * 微服务调用demo
@@ -47,8 +47,8 @@ public class DeviceServiceImpl implements IDeviceService {
 //        });
         // 添加LoadBalanced注解的RestTemplate根据服务名访问到负载均衡实例
 //        User user = restTemplate.getForEntity("http://sparrow-ms-user"+"/user/find/"+userId,User.class).getBody();
-        User user = userService.findUserById(userId);
-        device.setUserId(user.getUserId());
+//        User user = userService.findUserById(userId);
+//        device.setUserId(user.getUserId());
         return device;
     }
 

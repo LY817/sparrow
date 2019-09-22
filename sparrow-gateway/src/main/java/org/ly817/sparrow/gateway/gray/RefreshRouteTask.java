@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-@Component
-@Configuration
-@EnableScheduling
+//@Component
+//@Configuration
+//@EnableScheduling
 public class RefreshRouteTask {
 	
 	@Autowired
@@ -19,7 +19,7 @@ public class RefreshRouteTask {
     @Autowired
     private RouteLocator routeLocator;
 	
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     private void refreshRoute() {
         RoutesRefreshedEvent routesRefreshedEvent = new RoutesRefreshedEvent(routeLocator);
         publisher.publishEvent(routesRefreshedEvent);

@@ -5,23 +5,28 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.JdbcTemplate;
 
-@Configuration
+/**
+ * 自定义路由策略
+ */
+//@Configuration
 public class DynamicRouteConfiguration {
  
-    @Autowired
+//    @Autowired
     private ZuulProperties zuulProperties;
-    @Autowired
+
+//    @Autowired
     private ServerProperties server;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+
+//    @Autowired
+//    private JdbcTemplate jdbcTemplate;
  
-    @Bean
+//    @Bean
     public DynamicRouteLocator routeLocator() {
     	DynamicRouteLocator routeLocator = new DynamicRouteLocator(
     			this.server.getServlet().getContextPath(), this.zuulProperties);
-        routeLocator.setJdbcTemplate(jdbcTemplate);
+//        routeLocator.setJdbcTemplate(jdbcTemplate);
         return routeLocator;
     }
  

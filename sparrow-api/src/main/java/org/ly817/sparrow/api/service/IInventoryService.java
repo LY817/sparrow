@@ -16,7 +16,7 @@ public interface IInventoryService {
      * 新增商品
      */
     @PostMapping("/product/add")
-    void addProduct(Product product) throws APIException;
+    Product addProduct(Product product) throws APIException;
 
     /**
      * 根据商品id查询商品
@@ -30,7 +30,7 @@ public interface IInventoryService {
      * 核查 + 预减库存
      * @param productId 产品id
      */
-    @GetMapping("/inventory/check/{productId}/{amount}")
+    @GetMapping("/check/{productId}/{amount}")
 //    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
     APIResponse checkInventory(@PathVariable("productId") String productId,
                                @PathVariable("amount") Integer amount) throws APIException;

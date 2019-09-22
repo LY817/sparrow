@@ -2,7 +2,7 @@ package org.ly817.sparrow.gateway.gray;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import io.jmnarloch.spring.cloud.ribbon.support.RibbonFilterContextHolder;
+//import io.jmnarloch.spring.cloud.ribbon.support.RibbonFilterContextHolder;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
@@ -13,7 +13,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 
 @SuppressWarnings("unused")
-@Configuration
+//@Configuration
 public class GrayReleaseFilter extends ZuulFilter {
 	
 	@Resource
@@ -69,12 +69,12 @@ public class GrayReleaseFilter extends ZuulFilter {
         HttpServletRequest request = ctx.getRequest();
         String gray = request.getParameter("gray");
         
-        if("true".equals(gray)) {
-        	RibbonFilterContextHolder.getCurrentContext().add("version", "new");
-        } else {
-        	RibbonFilterContextHolder.getCurrentContext().add("version", "current");
-        }
-        
+//        if("true".equals(gray)) {
+//        	RibbonFilterContextHolder.getCurrentContext().add("version", "new");
+//        } else {
+//        	RibbonFilterContextHolder.getCurrentContext().add("version", "current");
+//        }
+//
         return null;
     }
 }

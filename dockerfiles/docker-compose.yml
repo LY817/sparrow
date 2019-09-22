@@ -1,0 +1,30 @@
+version: '3'
+services:
+  sparrow-eureka-server:
+    image: sparrow-eureka-server:latest
+    ports:
+    - "8761:8761"
+  sparrow-ms-inventory:
+    image: sparrow-ms-inventory:latest
+    links:
+    - "sparrow-eureka-server"
+    command:
+    - "--cmd.server=sparrow-eureka-server"
+    - "--spring.redis.host=192.168.137.70"
+  sparrow-ms-order:
+    image: sparrow-ms-order:latest
+    command:
+    - "--cmd.server=sparrow-eureka-server"
+    - "--debug=false"
+    links:
+    - "sparrow-eureka-server"
+    - "sparrow-ms-inventory"
+  sparrow-zuul-gateway:
+    image: sparrow-zuul-gateway:latest
+    links:
+    - "sparrow-eureka-server"
+    ports:
+    - "8080:8080"
+    command:
+    - "--cmd.server=sparrow-eureka-server"
+    - "--debug=false"

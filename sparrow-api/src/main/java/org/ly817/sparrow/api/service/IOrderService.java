@@ -16,7 +16,7 @@ public interface IOrderService {
      * v1:最简化版本：order -> inventory -> credit 调用链路
      * - 生成订单号
      * - 核查 + 预减库存
-     * @see IInventoryService#checkInventory(Long, Integer)
+     * @see IInventoryService#checkInventory(String, Integer)
      * - 计算金额
      *
 

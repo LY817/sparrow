@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: localhost
+    hostname: sparrow-eureka-server
   client:
     register-with-eureka: false
     fetch-registry: false

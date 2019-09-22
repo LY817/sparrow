@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
                                                         MissingServletRequestParameterException e) {
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         APIResponse result = new APIResponse();
         result.setCode(APIExceptionType.BAD_REQUEST.getCode());
         result.setMsg(APIExceptionType.BAD_REQUEST.getMsg());
@@ -52,6 +53,7 @@ public class GlobalExceptionHandler {
         // HttpStatus 5xx没有涉及512 表示业务逻辑错误
         response.setStatus(512);
         response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
 //        result.setCode(e.getType().getCode());
         result.setCode(e.getCode());
         String message = e.getMessage();

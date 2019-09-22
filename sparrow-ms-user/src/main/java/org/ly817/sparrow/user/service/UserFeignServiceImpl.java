@@ -36,7 +36,7 @@ public class UserFeignServiceImpl implements IUserService {
     public User findUserById(@PathVariable Long userId) {
         User user = new User();
         if (userId == 1000L) {
-            user.setUserId(1000L);
+            user.setUserId(userId+"");
             user.setUserName("luoyu");
             user.setPassword("luoyu666");
         }
@@ -56,7 +56,7 @@ public class UserFeignServiceImpl implements IUserService {
     // ==============Hystrix fallback methods===============
     public User fbFindUserById(Long userId){
         User user = new User();
-        user.setUserId(666L);
+        user.setUserId(666L+"");
         user.setUserName("备胎");
         user.setPassword("sdadeqare");
         return user;

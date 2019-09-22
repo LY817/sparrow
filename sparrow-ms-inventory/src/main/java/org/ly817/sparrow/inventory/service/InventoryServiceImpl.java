@@ -29,22 +29,22 @@ public class InventoryServiceImpl implements IInventoryService {
     RedisTemplate redisTemplate;
 
     @Override
-    public void addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody Product product) {
         redisTemplate.opsForHash().put("product", product.getProductId(), product);
         logger.info(product.toString());
+        return product;
     }
 
     @Override
-    public Product getProduct(@PathVariable("productId") Long productId) {
+    public Product getProduct(@PathVariable("productId") String productId) {
         Object product = redisTemplate.opsForHash().get("product", productId);
         return (Product) product;
     }
 
     @Override
-    public APIResponse checkInventory(@PathVariable("productId") Long productId,
+    public APIResponse checkInventory(@PathVariable("productId") String productId,
                                       @PathVariable("amount") Integer amount) throws APIException {
         APIResponse response = new APIResponse();
-        logger.error("============checkInventory===========");
         Product product = (Product) redisTemplate.opsForHash().get("product", productId);
         if (product != null) {
             if (product.getInventory() >= amount) {

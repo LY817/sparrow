@@ -3,14 +3,14 @@ cmd:
   server: "127.0.0.1"
 
 server:
-  port: 10002
+  port: 8080
 management:
   endpoints:
     web:
       base-path: /
 spring:
   application:
-    name: sparrow-ms-order
+    name: sparrow-zuul-gateway
   main:
     allow-bean-definition-overriding: true
 debug: true

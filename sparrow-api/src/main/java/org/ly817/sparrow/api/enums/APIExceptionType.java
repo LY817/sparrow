@@ -5,14 +5,15 @@ package org.ly817.sparrow.api.enums;
  * @date 2019/08/15 10:23
  * <p>
  * Description:
- * å¼‚å¸¸ç±»åž‹
+ * Òì³£ÀàÐÍ
+ * todo ÎªÊ²Ã´Ê¹ÓÃutf-8±àÂë»áµ¼ÖÂÊä³öÂÒÂë ÆäËûÎÄ¼þÓÃutf-8Êä³öÖÐÎÄÕý³£
  */
 public enum APIExceptionType {
 
-    NPE("404","æŸ¥è¯¢ç»“æžœä¸ºç©º"), // ç”¨äºŽç©ºå€¼æ£€æŸ¥
+    NPE("404","²éÑ¯½á¹ûÎª¿Õ"), // ÓÃÓÚ¿ÕÖµ¼ì²é
     BAD_REQUEST("500","BAD_REQUEST"),
     INTERNAL_SERVER_ERROR("501","INTERNAL_SERVER_ERROR"),
-    INVENTORY_NOT_ENOUGH("10001","æ²¡æœ‰ä½å¤Ÿçš„åº“å­˜");
+    INVENTORY_NOT_ENOUGH("10001","Ã»ÓÐ×¡¹»µÄ¿â´æ");
 
     private String  code;
 

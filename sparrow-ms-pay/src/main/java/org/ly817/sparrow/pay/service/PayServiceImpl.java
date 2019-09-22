@@ -2,6 +2,8 @@ package org.ly817.sparrow.pay.service;
 
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.service.IPayService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -12,8 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class PayServiceImpl implements IPayService {
+
+    private final Logger logger = LoggerFactory.getLogger(PayServiceImpl.class);
+
     @Override
     public String payCheck(String payToken, Double amount) throws APIException {
+        logger.error(payToken);
         return null;
     }
 

@@ -1,0 +1,20 @@
+eureka:
+  instance:
+    hostname: ${cmd.server}
+  client:
+    serviceUrl:
+      defaultZone: http://${cmd.server}:8761/eureka/
+    registryFetchIntervalSeconds: 3
+#    leaseRenewalIntervalInSeconds: 3
+
+zuul:
+  retryable: true
+  inventory:
+    serviceId: sparrow-ms-inventory
+    path: /inventory/**
+  order:
+    serviceId: sparrow-ms-order
+    path: /order/**
+#ribbon:
+#  eager-load:
+#    enabled: true
