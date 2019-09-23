@@ -17,7 +17,7 @@
         <module>sparrow-eureka-server</module>
         <module>sparrow-eureka-client</module>
         <module>sparrow-config</module>
-        <module>sparrow-ms-user</module>
+        <!--<module>sparrow-ms-user</module>-->
         <module>sparrow-ms-device</module>
         <module>sparrow-api</module>
         <module>sparrow-gateway</module>
@@ -28,6 +28,7 @@
         <module>sparrow-common</module>
         <module>sparrow-ms-pay</module>
         <module>sparrow-zuul-gateway</module>
+        <module>sparrow-ms-admin</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
