@@ -11,6 +11,11 @@ management:
 spring:
   application:
     name: sparrow-ms-admin
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost:3306/sparrow?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
 
   redis:
     host: "localhost"
