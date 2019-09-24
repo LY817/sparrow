@@ -2,6 +2,7 @@ package org.ly817.sparrow.admin.service;
 
 import org.ly817.sparrow.admin.dao.UserMapper;
 import org.ly817.sparrow.api.dto.AuthDTO;
+import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.User;
 import org.ly817.sparrow.api.service.IAdminService;
@@ -64,7 +65,7 @@ public class AdminServiceImpl implements IAdminService {
         if (user != null) {
             return user;
         } else {
-            throw new APIException("408","鉴权失败");
+            throw new APIException(APIExceptionType.AUTH_FAILED);
         }
     }
 
