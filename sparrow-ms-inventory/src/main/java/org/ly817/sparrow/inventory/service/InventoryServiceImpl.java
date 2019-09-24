@@ -1,6 +1,5 @@
 package org.ly817.sparrow.inventory.service;
 
-import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Product;
