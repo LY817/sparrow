@@ -40,8 +40,8 @@ public class GlobalExceptionHandler {
         response.setContentType("application/json;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         APIResponse result = new APIResponse();
-        result.setCode(APIExceptionType.BAD_REQUEST.getCode());
-        result.setMsg(APIExceptionType.BAD_REQUEST.getMsg());
+        result.setCode(APIExceptionType.BAD_REQUEST_PARAM.getCode());
+        result.setMsg(APIExceptionType.BAD_REQUEST_PARAM.getMsg());
         return result;
     }
 

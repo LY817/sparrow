@@ -18,7 +18,14 @@ services:
     - "--debug=false"
     links:
     - "sparrow-eureka-server"
-    - "sparrow-ms-inventory"
+#    - "sparrow-ms-inventory"
+  sparrow-ms-admin:
+    image: sparrow-ms-admin:latest
+    links:
+    - "sparrow-eureka-server"
+    command:
+    - "--cmd.server=sparrow-eureka-server"
+    - "--cmd.mysql.ip=192.168.137.70"
   sparrow-zuul-gateway:
     image: sparrow-zuul-gateway:latest
     links:

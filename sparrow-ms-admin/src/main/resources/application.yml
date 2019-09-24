@@ -1,6 +1,8 @@
 # 启动命令行参数占位符的默认值
 cmd:
   server: "127.0.0.1"
+  mysql:
+    ip: "localhost"
 
 server:
   port: 10000
@@ -13,13 +15,21 @@ spring:
     name: sparrow-ms-admin
   datasource:
     username: root
-    password: 1234
-    url: jdbc:mysql://localhost:3306/sparrow?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: 123456
+    url: jdbc:mysql://${cmd.mysql.ip}:3306/sparrow?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.jdbc.Driver
-
+    type: com.alibaba.druid.pool.DruidDataSource
   redis:
     host: "localhost"
 ##    url: "192.168.3.17"
-debug: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: org.ly817.sparrow.api.model
+  configuration:
+    map-underscore-to-camel-case: true
+
+debug: true
+
 #  profiles:
 #    active: dev # 会被spring.cloud.config.profile指定的远程配置文件替代

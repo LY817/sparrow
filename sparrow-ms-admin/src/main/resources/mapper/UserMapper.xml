@@ -4,7 +4,11 @@
 <mapper namespace="org.ly817.sparrow.admin.dao.UserMapper">
 
 
-    <select id="findUserByUsername">
-        select * from user u where u.user_name = ${userName};
+    <select id="findUserByUsername" resultType="org.ly817.sparrow.api.model.User">
+        select * from user u where u.user_name = #{userName}
+    </select>
+
+    <select id="findUserByUserNameAndPwd" resultType="org.ly817.sparrow.api.model.User">
+        select * from user u where u.user_name = #{userName} and u.password = #{pwd}
     </select>
 </mapper>
