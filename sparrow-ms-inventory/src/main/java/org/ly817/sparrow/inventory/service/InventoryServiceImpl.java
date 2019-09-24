@@ -42,22 +42,20 @@ public class InventoryServiceImpl implements IInventoryService {
     }
 
     @Override
-    public APIResponse checkInventory(@PathVariable("productId") String productId,
+    public Product checkInventory(@PathVariable("productId") String productId,
                                       @PathVariable("amount") Integer amount) throws APIException {
-        APIResponse response = new APIResponse();
         Product product = (Product) redisTemplate.opsForHash().get("product", productId);
         if (product != null) {
             if (product.getInventory() >= amount) {
                 product.setInventory(product.getInventory() - amount);
                 redisTemplate.opsForHash().put("product",productId,product);
-                response.setData(product);
             } else {
                 throw new APIException(APIExceptionType.INVENTORY_NOT_ENOUGH);
             }
         } else {
             throw new APIException(APIExceptionType.NPE, productId + "");
         }
-        return response;
+        return product;
     }
 
     @Override

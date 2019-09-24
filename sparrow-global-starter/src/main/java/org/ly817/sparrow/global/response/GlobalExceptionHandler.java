@@ -1,4 +1,4 @@
-package org.ly817.sparrow.global.exception;
+package org.ly817.sparrow.global.response;
 
 import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.enums.APIExceptionType;
@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
         result.setCode(e.getCode());
         String message = e.getMessage();
         result.setMsg(message);
-        logger.error("Known exception", e.getMessage(), e);
+        logger.error("Known response", e.getMessage(), e);
         return result;
     }
 }

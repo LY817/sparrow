@@ -10,6 +10,12 @@ import java.io.Serializable;
  */
 public class APIResponse implements Serializable {
 
+    public static APIResponse success(Object payLoad){
+        APIResponse response = new APIResponse();
+        response.setData(payLoad);
+        return response;
+    }
+
     private String code = "200";
 
     private String msg;

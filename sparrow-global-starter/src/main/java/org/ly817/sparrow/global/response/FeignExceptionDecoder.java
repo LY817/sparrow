@@ -1,8 +1,7 @@
-package org.ly817.sparrow.global.exception;
+package org.ly817.sparrow.global.response;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import feign.FeignException;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;

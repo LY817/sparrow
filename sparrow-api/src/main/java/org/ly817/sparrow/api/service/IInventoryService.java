@@ -32,7 +32,7 @@ public interface IInventoryService {
      */
     @GetMapping("/check/{productId}/{amount}")
 //    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
-    APIResponse checkInventory(@PathVariable("productId") String productId,
+    Product checkInventory(@PathVariable("productId") String productId,
                                @PathVariable("amount") Integer amount) throws APIException;
 
     /**
