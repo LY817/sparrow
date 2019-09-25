@@ -1,5 +1,8 @@
 package org.ly817.sparrow.api.dto;
 
+import com.alibaba.fastjson.JSON;
+import org.ly817.sparrow.api.exception.APIException;
+
 import java.io.Serializable;
 
 /**
@@ -13,6 +16,13 @@ public class APIResponse implements Serializable {
     public static APIResponse success(Object payLoad){
         APIResponse response = new APIResponse();
         response.setData(payLoad);
+        return response;
+    }
+
+    public static APIResponse exception(APIException e){
+        APIResponse response = new APIResponse();
+        response.setCode(e.getCode());
+        response.setMsg(e.getMessage());
         return response;
     }
 
@@ -44,5 +54,10 @@ public class APIResponse implements Serializable {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

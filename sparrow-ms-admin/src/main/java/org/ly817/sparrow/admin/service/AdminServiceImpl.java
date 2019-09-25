@@ -59,7 +59,7 @@ public class AdminServiceImpl implements IAdminService {
     }
 
     @Override
-    public User auth(String userName,String token) throws APIException {
+    public User auth(@RequestParam("userName") String userName,@RequestParam("token") String token) throws APIException {
         String authKey = "AUTH_" + userName;
         User user = (User) redisTemplate.opsForHash().get(authKey,token);
         if (user != null) {

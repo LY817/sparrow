@@ -3,9 +3,7 @@ package org.ly817.sparrow.api.service;
 import org.ly817.sparrow.api.dto.AuthDTO;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/9/24.
@@ -16,16 +14,16 @@ public interface IAdminService {
     //===========用户省份管理=============
 
     @PostMapping("/user/login")
-    AuthDTO login(String userName, String password);
+    AuthDTO login(@RequestParam("userName") String userName,@RequestParam("password") String password);
 
     @PostMapping("/user/refresh")
-    AuthDTO refreshToken(String userName,String refreshToken);
+    AuthDTO refreshToken(@RequestParam("userName") String userName,@RequestParam("refreshToken") String refreshToken);
 
     @PostMapping("/user/auth")
-    User auth(String userName,String token) throws APIException;
+    User auth(@RequestParam("userName") String userName,@RequestParam("token") String token) throws APIException;
 
     @GetMapping("/user/{userName}")
-    User findUserByUserName(String userName);
+    User findUserByUserName(@PathVariable("userName") String userName);
 
     //=============动态网关映射管理==============
 }

@@ -70,15 +70,35 @@ xxxx-spring-boot-starter
 ### eureka注册中心 服务发现延时高
 eureka中默认配置，轮询更新服务列表的时间为30s
 通过修改`registryFetchIntervalSeconds`配置来提高服务注册的感知速度
+
 ## 容器化
+### 调试容器方式 exec -it
+
 ### dockerfile中RUN/ENTRYPOINT/CMD的区别与实践
+
 #### RUN
 RUN命令每执行一次都会创建新的一层镜像
 主要用来构建执行环节、安装先关依赖
 为了避免构建多个镜像，尽量将多个RUN命令写在一起，通过 \ 隔开
 #### ENTRYPOINT
 ENTRYPOINT配置容器启动时的执行命令，通常用来启动应用程序
-可以是一个shell脚本（方便在执行前添加其他逻辑）
+可以是一个shell脚本（方便在执行前添加其他逻辑，也可以在sh脚本中通过$0、$1获取外部输入的命令）
+下列为redis进行的docker-entrypoint.sh
+```bash
+# first arg is `-f` or `--some-option`
+# or first arg is `something.conf`
+if [ "${1#-}" != "$1" ] || [ "${1%.conf}" != "$1" ]; then
+        set -- redis-server "$@"
+fi
+
+# allow the container to be started with `--user`
+if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then
+        find . \! -user redis -exec chown redis '{}' +
+        exec gosu redis "$0" "$@"
+fi
+
+exec "$@"
+```
 也可以是一个exec格式的命令（方便接收应用程序（SpringBoot）接收外层（docker命令行或者docker-compose）通过cmd输入的动态参数）
 
 #### CMD
