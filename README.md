@@ -71,6 +71,10 @@ xxxx-spring-boot-starter
 eureka中默认配置，轮询更新服务列表的时间为30s
 通过修改`registryFetchIntervalSeconds`配置来提高服务注册的感知速度
 
+### fegin+SpringMVC实现同一个接口
+优点：可以规范服务的提供方和调用方
+
+
 ## 容器化
 ### 调试容器方式 exec -it
 
