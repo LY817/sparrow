@@ -1,6 +1,6 @@
 package org.ly817.sparrow.order;
 
-import org.ly817.sparrow.api.fegin.FInventoryService;
+import org.ly817.sparrow.api.feign.FInventoryService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;

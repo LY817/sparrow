@@ -1,9 +1,9 @@
 package org.ly817.sparrow.order.service;
 
 import org.ly817.sparrow.api.exception.APIException;
-//import org.ly817.sparrow.api.fegin.FCreditService;
-import org.ly817.sparrow.api.fegin.FInventoryService;
-//import org.ly817.sparrow.api.fegin.FPayService;
+//import org.ly817.sparrow.api.feign.FCreditService;
+import org.ly817.sparrow.api.feign.FInventoryService;
+//import org.ly817.sparrow.api.feign.FPayService;
 import org.ly817.sparrow.api.model.Order;
 import org.ly817.sparrow.api.service.IOrderService;
 import org.ly817.sparrow.common.UUIDUtil;

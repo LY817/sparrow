@@ -10,7 +10,7 @@ SpringCloud技术栈+docker容器化+k8s发布 练手项目
 
 ### global-starter
 被微服务引用，统一处理异常
-#### fegin自定义异常解析
+#### feign自定义异常解析
 
 
 ### Zuul网关
@@ -71,8 +71,12 @@ xxxx-spring-boot-starter
 eureka中默认配置，轮询更新服务列表的时间为30s
 通过修改`registryFetchIntervalSeconds`配置来提高服务注册的感知速度
 
-### fegin+SpringMVC实现同一个接口
+### feign + SpringMVC实现同一个接口
 优点：可以规范服务的提供方和调用方
+踩坑：
+feign不能直接从公共接口（IXxxService）创建调用代理
+需要中间创建一个FXxxService的标记接口，extends IXxxService，并标记`@FeignClient`指定注册在注册中心的对应微服务名称
+否则创建feign客户端bean的时候，创建两个同名的bean，出现`[Ambiguous mapping]`异常
 
 
 ## 容器化
@@ -86,7 +90,8 @@ RUN命令每执行一次都会创建新的一层镜像
 为了避免构建多个镜像，尽量将多个RUN命令写在一起，通过 \ 隔开
 #### ENTRYPOINT
 ENTRYPOINT配置容器启动时的执行命令，通常用来启动应用程序
-可以是一个shell脚本（方便在执行前添加其他逻辑，也可以在sh脚本中通过$0、$1获取外部输入的命令）
+可以是一个shell脚本（方便在执行前添加其他逻辑）
+也可以在sh脚本中通过$0、$1获取cmd外部输入的命令
 下列为redis进行的docker-entrypoint.sh
 ```bash
 # first arg is `-f` or `--some-option`

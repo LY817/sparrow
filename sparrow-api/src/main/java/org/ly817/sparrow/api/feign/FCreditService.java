@@ -1,4 +1,4 @@
-package org.ly817.sparrow.api.fegin;
+package org.ly817.sparrow.api.feign;
 
 import org.ly817.sparrow.api.service.ICreditService;
 import org.springframework.cloud.openfeign.FeignClient;

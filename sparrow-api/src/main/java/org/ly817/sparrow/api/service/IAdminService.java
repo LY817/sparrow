@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("admin")
 public interface IAdminService {
 
-    //===========用户省份管理=============
+    //===========用户身份管理=============
 
     @PostMapping("/user/login")
     AuthDTO login(@RequestParam("userName") String userName,@RequestParam("password") String password);
@@ -26,4 +26,10 @@ public interface IAdminService {
     User findUserByUserName(@PathVariable("userName") String userName);
 
     //=============动态网关映射管理==============
+
+    /**
+     * 查询当前服务映射关系
+     */
+
+
 }

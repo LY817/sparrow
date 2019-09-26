@@ -4,11 +4,11 @@ eureka:
       defaultZone: http://${cmd.server}:8761/eureka/
 
 # zuul路由配置
-#zuul:
-#  ignored-services: *
-#  routes:
-#    sparrow-ms-inventory: /inventory/**
-#    sparrow-ms-order: /order/**
+zuul:
+  ignored-services: *
+  routes:
+    sparrow-ms-inventory: /inventory/**
+    sparrow-ms-order: /order/**
 #spring:
 #  cloud:
 #    config:
