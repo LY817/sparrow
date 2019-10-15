@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@RequestMapping("order")
+@RequestMapping
 public interface IOrderService {
 
     /**
@@ -32,6 +32,6 @@ public interface IOrderService {
      * v2:
      * @param order
      */
-    @PostMapping("add")
+    @PostMapping("orders")
     void addOrder(Order order) throws APIException;
 }

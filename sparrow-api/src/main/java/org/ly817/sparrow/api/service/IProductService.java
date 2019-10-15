@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by LuoYu on 2019/10/11.
  * 商品服务
  */
-@RequestMapping("/product")
+@RequestMapping
 public interface IProductService {
     /**
      * 新增商品
@@ -22,13 +22,13 @@ public interface IProductService {
      *
      *
      */
-    @PostMapping("/add")
+    @PostMapping("/products")
     Product addProduct(Product product) throws APIException;
 
     /**
      * 根据商品id查询商品
      * @param productId
      */
-    @GetMapping("/{productId}")
+    @GetMapping("/products/{productId}")
     Product getProduct(@PathVariable("productId") String productId) throws APIException;
 }

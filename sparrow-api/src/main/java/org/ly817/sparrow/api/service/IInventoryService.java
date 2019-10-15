@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@RequestMapping("/inventory")
+@RequestMapping
 public interface IInventoryService {
 
     /**

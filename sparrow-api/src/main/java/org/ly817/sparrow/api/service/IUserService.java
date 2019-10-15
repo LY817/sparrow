@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Description:
  * 用户服务接口
  */
-@RequestMapping("user")
+@RequestMapping
 public interface IUserService {
 
     /**
@@ -22,7 +22,7 @@ public interface IUserService {
      * @param userId 用户主键id @PathVariable注解必须在实现类中
      * @return User
      */
-    @GetMapping("/user/{userId}")
+    @GetMapping("/users/{userId}")
     User findUserById(@PathVariable("userId") Long userId) throws APIException;
 
 }
