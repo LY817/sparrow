@@ -20,7 +20,7 @@
         <!--<module>sparrow-ms-user</module>-->
         <module>sparrow-ms-device</module>
         <module>sparrow-api</module>
-        <module>sparrow-gateway</module>
+        <!--<module>sparrow-gateway</module>-->
         <module>sparrow-ms-order</module>
         <module>sparrow-ms-inventory</module>
         <module>sparrow-ms-credit</module>

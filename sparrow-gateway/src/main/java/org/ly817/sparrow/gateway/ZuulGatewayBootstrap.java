@@ -3,6 +3,7 @@ package org.ly817.sparrow.gateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author LY
@@ -12,6 +13,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @SpringBootApplication
 @EnableZuulProxy
+@EnableScheduling
 public class ZuulGatewayBootstrap {
     public static void main(String[] args) {
         SpringApplication.run(ZuulGatewayBootstrap.class, args);

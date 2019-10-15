@@ -1,5 +1,13 @@
 version: '3'
 services:
+  # 一键部署 不多bb
+  sparrow-mysql:
+    image: sparrow-mysql:latest
+    environment:
+    - "MYSQL_ROOT_PASSWORD=123456"
+  sparrow-redis:
+    image: redis:latest
+  # 中间件全部用容器
   sparrow-eureka-server:
     image: sparrow-eureka-server:latest
     ports:
@@ -10,7 +18,8 @@ services:
     - "sparrow-eureka-server"
     command:
     - "--cmd.server=sparrow-eureka-server"
-    - "--spring.redis.host=192.168.137.70"
+    - "--spring.redis.host=sparrow-redis"
+#    - "--spring.redis.host=192.168.137.70"
   sparrow-ms-order:
     image: sparrow-ms-order:latest
     command:
@@ -18,14 +27,15 @@ services:
     - "--debug=false"
     links:
     - "sparrow-eureka-server"
-#    - "sparrow-ms-inventory"
+#    - "sparrow-ms-inventory" 只需要所有问服务都连到一个容器下，就都可以互相连通
   sparrow-ms-admin:
     image: sparrow-ms-admin:latest
     links:
     - "sparrow-eureka-server"
     command:
     - "--cmd.server=sparrow-eureka-server"
-    - "--cmd.mysql.ip=192.168.137.70"
+    - "--cmd.mysql.ip=sparrow-mysql"
+#    - "--cmd.mysql.ip=192.168.137.70"
   sparrow-zuul-gateway:
     image: sparrow-zuul-gateway:latest
     links:

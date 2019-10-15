@@ -11,7 +11,11 @@ import java.util.UUID;
 public class Main {
     public static void main(String[] args) {
 
-        String[] strings = "eqwe-fqtf-qwewe-luoyu666".split("-");
-        System.out.println(strings[strings.length - 1]);
+//        String[] strings = "eqwe-fqtf-qwewe-luoyu666".split("-");
+//        System.out.println(strings[strings.length - 1]);
+
+        if (true && false) {
+            System.out.println();
+        }
     }
 }

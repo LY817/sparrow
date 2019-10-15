@@ -4,7 +4,7 @@ LABEL email="luoyu817@126.com"
 
 ENV LANG C.UTF-8
 
-ADD ./target/sparrow-ms-inventory-1.0-SNAPSHOT.jar /usr/local/app.jar
+ADD ./target/sparrow-ms-admin-1.0-SNAPSHOT.jar /usr/local/app.jar
 ADD ./docker-bootstrap.sh /usr/local/docker-bootstrap.sh
 
 EXPOSE 10001

@@ -5,7 +5,6 @@ eureka:
 
 # zuul路由配置
 zuul:
-  ignored-services: *
   routes:
     sparrow-ms-inventory: /inventory/**
     sparrow-ms-order: /order/**

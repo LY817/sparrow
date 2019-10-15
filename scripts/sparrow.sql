@@ -12,6 +12,9 @@ File Encoding         : 65001
 
 Date: 2019-08-21 22:25:05
 */
+CREATE DATABASE `sparrow`;
+
+USE `sparrow`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -51,3 +54,6 @@ CREATE TABLE `user` (
   `password` varchar(32) NOT NULL,
   `credit_score` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `user` VALUES ('1', 'luoyu', '123456', 100);
+INSERT INTO `user` VALUES ('2', 'luoyu817', '654321', 100);
