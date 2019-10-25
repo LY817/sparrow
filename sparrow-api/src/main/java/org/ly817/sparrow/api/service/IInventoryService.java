@@ -1,9 +1,7 @@
 package org.ly817.sparrow.api.service;
 
-import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.model.Product;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,29 +13,29 @@ public interface IInventoryService {
     /**
      * 新增商品
      */
-    @PostMapping("/product/add")
+    @PostMapping("/products")
     Product addProduct(Product product) throws APIException;
 
     /**
      * 根据商品id查询商品
      * @param productId
      */
-    @GetMapping("/product/{productId}")
-//    @RequestMapping(value = "/product/{productId}",method = RequestMethod.GET)
+    @GetMapping("/products/{productId}")
     Product getProduct(@PathVariable("productId") String productId) throws APIException;
 
     /**
      * 核查 + 预减库存
      * @param productId 产品id
+     *
+     * todo 这个用rest风格的接口怎么设计
      */
-    @GetMapping("/check/{productId}/{amount}")
-//    @RequestMapping(value = "/inventory/check/{productId}/{amount}",method = RequestMethod.GET)
+    @GetMapping("/products/{productId}/{amount}")
     Product checkInventory(@PathVariable("productId") String productId,
                                @PathVariable("amount") Integer amount) throws APIException;
 
     /**
      *
      */
-    @PostMapping("deduct")
+    @PatchMapping("products/inventory/{amount}")
     void deductInventory() throws APIException;
 }
