@@ -1,7 +1,8 @@
 package org.ly817.sparrow.api.service;
 
 import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.model.Product;
+
+import org.ly817.sparrow.api.pojo.Product;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,5 +31,13 @@ public interface IProductService {
      * @param productId
      */
     @GetMapping("/products/{productId}")
-    Product getProduct(@PathVariable("productId") String productId) throws APIException;
+    Product getProduct(@PathVariable("productId") Long productId) throws APIException;
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/products/{productId}/inventory/{checkNumber}")
+    Product checkProductInventory(@PathVariable("productId") Long productId,
+                                  @PathVariable("checkNumber") Integer checkNumber);
 }

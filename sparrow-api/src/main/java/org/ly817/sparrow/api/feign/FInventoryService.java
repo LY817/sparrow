@@ -2,6 +2,7 @@ package org.ly817.sparrow.api.feign;
 
 import org.ly817.sparrow.api.service.IInventoryService;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by LuoYu on 2019/8/18.

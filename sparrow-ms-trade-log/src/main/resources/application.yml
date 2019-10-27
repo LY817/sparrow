@@ -10,7 +10,7 @@ management:
       base-path: /
 spring:
   application:
-    name: sparrow-ms-order
+    name: sparrow-ms-trade-log
   main:
     allow-bean-definition-overriding: true
 

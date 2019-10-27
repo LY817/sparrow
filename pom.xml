@@ -14,21 +14,24 @@
     <artifactId>sparrow</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>sparrow-zuul-gateway</module>
         <module>sparrow-eureka-server</module>
         <module>sparrow-eureka-client</module>
         <module>sparrow-config</module>
         <!--<module>sparrow-ms-user</module>-->
-        <module>sparrow-ms-device</module>
+        <!--<module>sparrow-ms-device</module>-->
         <module>sparrow-api</module>
         <!--<module>sparrow-gateway</module>-->
         <module>sparrow-ms-order</module>
         <module>sparrow-ms-inventory</module>
-        <module>sparrow-ms-credit</module>
+        <!--<module>sparrow-ms-credit</module>-->
         <module>sparrow-global-starter</module>
         <module>sparrow-common</module>
         <module>sparrow-ms-pay</module>
-        <module>sparrow-zuul-gateway</module>
+
         <module>sparrow-ms-admin</module>
+        <module>sparrow-ms-product</module>
+        <module>sparrow-ms-trade-log</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

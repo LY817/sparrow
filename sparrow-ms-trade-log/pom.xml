@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sparrow-ms-order</artifactId>
-    <description>订单微服务</description>
+    <artifactId>sparrow-ms-trade-log</artifactId>
+    <description>交易日志微服务</description>
     <dependencies>
         <dependency>
             <groupId>org.ly817</groupId>
@@ -117,5 +117,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
