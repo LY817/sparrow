@@ -22,13 +22,13 @@ public interface IPayService {
      * @return 流水号
      */
     @PostMapping("payCheck")
-    String payCheck(@RequestBody String payToken,@RequestBody Double amount) throws APIException;
+    String payCheck(@RequestBody String payToken,@RequestBody Double amount);
 
 
     /**
      * 第三方支付回调
      */
     @PostMapping("payCallback")
-    String payCallback() throws APIException;
+    String payCallback();
 
 }

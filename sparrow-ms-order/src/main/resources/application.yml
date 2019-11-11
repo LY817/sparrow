@@ -1,6 +1,11 @@
 # 启动命令行参数占位符的默认值
 cmd:
   server: "127.0.0.1"
+  mysql:
+    ip: "127.0.0.1"
+  redis:
+    ip: "127.0.0.1"
+    port: 6379
 
 server:
   port: 10002
@@ -8,15 +13,10 @@ management:
   endpoints:
     web:
       base-path: /
-spring:
-  application:
-    name: sparrow-ms-order
-  main:
-    allow-bean-definition-overriding: true
 
 spring:
   application:
-    name: sparrow-ms-product
+    name: sparrow-ms-order
   datasource:
     username: root
     password: 123456
@@ -24,8 +24,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   redis:
-    host: "localhost"
-##    url: "192.168.3.17"
+    host: ${cmd.redis.ip}
 
 mybatis:
   mapper-locations: classpath:mapper/*Dao.xml

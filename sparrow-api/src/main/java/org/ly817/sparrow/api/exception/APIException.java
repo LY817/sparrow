@@ -10,7 +10,7 @@ import org.ly817.sparrow.api.enums.APIExceptionType;
  * 异常统一处理
  * 将逻辑异常封装成API状态码中的
  */
-public class APIException extends Exception {
+public class APIException extends RuntimeException {
 
     private String code;
 

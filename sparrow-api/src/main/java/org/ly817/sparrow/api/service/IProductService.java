@@ -1,18 +1,15 @@
 package org.ly817.sparrow.api.service;
 
-import org.ly817.sparrow.api.exception.APIException;
+
 
 import org.ly817.sparrow.api.pojo.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/10/11.
  * 商品服务
  */
-@RequestMapping
+@RequestMapping("/products")
 public interface IProductService {
     /**
      * 新增商品
@@ -23,21 +20,29 @@ public interface IProductService {
      *
      *
      */
-    @PostMapping("/products")
-    Product addProduct(Product product) throws APIException;
+    @PostMapping
+    Product addProduct(@RequestBody Product product);
 
     /**
      * 根据商品id查询商品
      * @param productId
      */
-    @GetMapping("/products/{productId}")
-    Product getProduct(@PathVariable("productId") Long productId) throws APIException;
+    @GetMapping("/{productId}")
+    Product getProduct(@PathVariable("productId") Long productId);
 
     /**
-     *
-     * @return
+     * 检查库存
      */
-    @GetMapping("/products/{productId}/inventory/{checkNumber}")
+    @Deprecated
+    @GetMapping("/{productId}/inventory/{checkNumber}")
     Product checkProductInventory(@PathVariable("productId") Long productId,
                                   @PathVariable("checkNumber") Integer checkNumber);
+
+    /**
+     * 增加商品库存
+     * 乐观锁实现
+     */
+    @PatchMapping("/{productId}/inventory/{number}")
+    void updateProductInventory(@PathVariable("productId") Long productId,
+                                @PathVariable("number") Integer number);
 }

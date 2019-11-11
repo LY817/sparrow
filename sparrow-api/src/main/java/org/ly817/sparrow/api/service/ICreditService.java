@@ -15,5 +15,5 @@ public interface ICreditService {
      * 添加积分
      */
     @PostMapping("add/{score}")
-    void addCreditScore(@PathVariable("userId") Long userId,@PathVariable("score") int score) throws APIException;
+    void addCreditScore(@PathVariable("userId") Long userId,@PathVariable("score") int score);
 }

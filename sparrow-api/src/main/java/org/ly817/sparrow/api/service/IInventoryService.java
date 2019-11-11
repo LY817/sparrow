@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@RequestMapping
+@Deprecated
+//@RequestMapping
 public interface IInventoryService {
 
     /**

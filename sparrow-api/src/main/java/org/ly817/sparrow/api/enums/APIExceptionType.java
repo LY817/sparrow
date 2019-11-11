@@ -15,7 +15,16 @@ public enum APIExceptionType {
     BAD_REQUEST("500","BAD_REQUEST"),
     BAD_REQUEST_PARAM("505","请求参数传值异常，请检查API"),
     INTERNAL_SERVER_ERROR("501","INTERNAL_SERVER_ERROR"),
-    INVENTORY_NOT_ENOUGH("10001","没有住够的库存");
+    // 商品
+    PRODUCT_NOT_EXIST("10000","商品不存在"),
+    INVENTORY_NOT_ENOUGH("10001","没有足够的库存"),
+    // 订单
+    ORDER_INVALID_PRICE("20001","订单单价不合法"),
+    ORDER_NUMBER_OVER("20002","订单商品数量超库存" ),
+    ORDER_AMOUNT_INVALID("20003", "订单总价不合法"),
+    // 优惠券
+    COUPON_NOT_EXIST("30000","优惠券不存在"),
+    COUPON_NOT_USED("30001","优惠券已使用"), ;
 
     private String  code;
 

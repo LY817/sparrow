@@ -96,7 +96,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -115,29 +115,29 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from order
+    from `order`
     where order_id = #{orderId,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from order
+    delete from `order`
     where order_id = #{orderId,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="org.ly817.sparrow.api.pojo.OrderExample">
-    delete from order
+    delete from `order`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="org.ly817.sparrow.api.pojo.Order" useGeneratedKeys="true">
-    insert into order (pay_serial_id, user_id, `number`, 
-      amount, order_sts, pay_sts, 
-      shipping_sts, address, consignee, 
-      product_id, product_number, product_price, 
-      product_amount, shipping_fee, order_amount, 
-      coupon_id, coupon_paid, money_paid, 
-      pay_amount, create_time, confirm_time, 
+  <insert id="insert" keyColumn="order_id" keyProperty="orderId" parameterType="org.ly817.sparrow.api.pojo.Order">
+    insert into `order` (order_id, pay_serial_id, user_id, `number`,
+      amount, order_sts, pay_sts,
+      shipping_sts, address, consignee,
+      product_id, product_number, product_price,
+      product_amount, shipping_fee, order_amount,
+      coupon_id, coupon_paid, money_paid,
+      pay_amount, create_time, confirm_time,
       pay_time)
-    values (#{paySerialId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}, 
+    values (#{orderId,jdbcType=BIGINT}, #{paySerialId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{number,jdbcType=INTEGER},
       #{amount,jdbcType=DOUBLE}, #{orderSts,jdbcType=INTEGER}, #{paySts,jdbcType=INTEGER}, 
       #{shippingSts,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
       #{productId,jdbcType=BIGINT}, #{productNumber,jdbcType=INTEGER}, #{productPrice,jdbcType=DECIMAL}, 
@@ -146,9 +146,12 @@
       #{payAmount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{confirmTime,jdbcType=TIMESTAMP}, 
       #{payTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId" parameterType="org.ly817.sparrow.api.pojo.Order" useGeneratedKeys="true">
-    insert into order
+  <insert id="insertSelective" keyColumn="order_id" keyProperty="orderId" parameterType="org.ly817.sparrow.api.pojo.Order">
+    insert into `order`
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
       <if test="paySerialId != null">
         pay_serial_id,
       </if>
@@ -218,6 +221,9 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="paySerialId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="paySerialId != null">
         #{paySerialId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
@@ -286,13 +292,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="org.ly817.sparrow.api.pojo.OrderExample" resultType="java.lang.Long">
-    select count(*) from order
+    select count(*) from `order`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update order
+    update `order`
     <set>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=BIGINT},
@@ -369,7 +375,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update order
+    update `order`
     set order_id = #{record.orderId,jdbcType=BIGINT},
       pay_serial_id = #{record.paySerialId,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=BIGINT},
@@ -398,7 +404,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="org.ly817.sparrow.api.pojo.Order">
-    update order
+    update `order`
     <set>
       <if test="paySerialId != null">
         pay_serial_id = #{paySerialId,jdbcType=VARCHAR},
@@ -470,7 +476,7 @@
     where order_id = #{orderId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.ly817.sparrow.api.pojo.Order">
-    update order
+    update `order`
     set pay_serial_id = #{paySerialId,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=BIGINT},
       `number` = #{number,jdbcType=INTEGER},

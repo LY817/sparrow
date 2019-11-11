@@ -24,6 +24,9 @@ public class FeignExceptionDecoder implements ErrorDecoder {
 
     private final Logger logger = LoggerFactory.getLogger(FeignExceptionDecoder.class);
     /**
+     * 当http响应状态为512,表示为内部业务异常
+     * @see GlobalExceptionHandler#processApiException
+     *
      *
      * @param methodKey
      * @param response 获取返回值 如果
@@ -34,15 +37,20 @@ public class FeignExceptionDecoder implements ErrorDecoder {
         try {
             if (response.body() != null) {
                 JSONObject apiResponseJson = JSON.parseObject(Util.toString(response.body().asReader()));
-                if (!"200".equals(apiResponseJson.getString("code"))) {
+                if (response.status() == 512) {
+                    // 业务内部定义异常
                     return new APIException(apiResponseJson.getString("code"),
                                             apiResponseJson.getString("msg"));
+                } else {
+                    // SpringBoot内部异常
+                    return new APIException(apiResponseJson.getString("status"),
+                                            apiResponseJson.getString("message"));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.error("出现未知异常 调用地址：{}",methodKey);
+        logger.error("未知异常 调用地址：{}",methodKey);
         return new APIException("未知异常 请联系管理员 调用地址：" + methodKey,"666");
     }
 }

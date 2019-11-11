@@ -17,10 +17,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * <p>
  * Description:
  * 按正常逻辑（没有抛异常）返回的对象
- * 全局包装成APIResponse
+ * 统一异常 将内置异常转成APIException
  */
-@ControllerAdvice
-@ResponseBody
+//@ControllerAdvice
+//@ResponseBody
+@Deprecated
 public class APIResponseWrapperAdvice implements ResponseBodyAdvice<Object> {
     @Override
     public boolean supports(MethodParameter methodParameter,
@@ -44,6 +45,7 @@ public class APIResponseWrapperAdvice implements ResponseBodyAdvice<Object> {
         } else {
             // 其他类型进行统一包装
             result = APIResponse.success(body);
+
         }
         return result;
     }

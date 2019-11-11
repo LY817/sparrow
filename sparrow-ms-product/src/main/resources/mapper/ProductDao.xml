@@ -109,9 +109,9 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="product_id" keyProperty="productId" parameterType="org.ly817.sparrow.api.pojo.Product" useGeneratedKeys="true">
-    insert into product (product_name, price, inventory, 
+    insert into product (product_id,product_name, price, inventory,
       `desc`, add_time)
-    values (#{productName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{inventory,jdbcType=INTEGER}, 
+    values (#{productId,jdbcType=BIGINT},#{productName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{inventory,jdbcType=INTEGER},
       #{desc,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="product_id" keyProperty="productId" parameterType="org.ly817.sparrow.api.pojo.Product" useGeneratedKeys="true">
@@ -224,5 +224,11 @@
       `desc` = #{desc,jdbcType=VARCHAR},
       add_time = #{addTime,jdbcType=TIMESTAMP}
     where product_id = #{productId,jdbcType=BIGINT}
+  </update>
+  <update id="updateInventoryByProductId">
+    update product
+      set inventory = inventory + #{number}
+    where product_id = #{productId}
+    and inventory >= -#{number}
   </update>
 </mapper>

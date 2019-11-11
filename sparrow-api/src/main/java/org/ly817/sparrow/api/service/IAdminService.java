@@ -20,7 +20,7 @@ public interface IAdminService {
     AuthDTO refreshToken(@RequestParam("userName") String userName,@RequestParam("refreshToken") String refreshToken);
 
     @PostMapping("/user/auth")
-    User auth(@RequestParam("userName") String userName,@RequestParam("token") String token) throws APIException;
+    User auth(@RequestParam("userName") String userName,@RequestParam("token") String token);
 
     @GetMapping("/user/{userName}")
     User findUserByUserName(@PathVariable("userName") String userName);

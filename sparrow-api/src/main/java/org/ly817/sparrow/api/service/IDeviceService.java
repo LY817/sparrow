@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Description:
  * 设备微服务接口
  */
+@Deprecated
 @RequestMapping("device")
 public interface IDeviceService {
 
     @GetMapping("/register/{imei}/{userId}")
-    Device registerDevice(String imei, Long userId) throws APIException;
+    Device registerDevice(String imei, Long userId);
 
 }

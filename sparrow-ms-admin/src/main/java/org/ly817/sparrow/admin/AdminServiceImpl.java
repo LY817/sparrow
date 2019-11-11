@@ -1,4 +1,4 @@
-package org.ly817.sparrow.admin.service;
+package org.ly817.sparrow.admin;
 
 import org.ly817.sparrow.admin.dao.UserMapper;
 import org.ly817.sparrow.api.dto.AuthDTO;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  * 否则创建feign客户端bean的时候，创建两个bean
  * 出现[Ambiguous mapping]异常
  */
-@FeignClient(value = "sparrow-ms-inventory")
+//@FeignClient(value = "sparrow-ms-inventory")
+@Deprecated
 public interface FInventoryService extends IInventoryService {
 }

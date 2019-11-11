@@ -1,9 +1,11 @@
 # 启动命令行参数占位符的默认值
 cmd:
   server: "127.0.0.1"
+  mysql:
+    ip: "127.0.0.1"
 
 server:
-  port: 10002
+  port: 10007
 management:
   endpoints:
     web:
@@ -13,10 +15,6 @@ spring:
     name: sparrow-ms-trade-log
   main:
     allow-bean-definition-overriding: true
-
-spring:
-  application:
-    name: sparrow-ms-product
   datasource:
     username: root
     password: 123456

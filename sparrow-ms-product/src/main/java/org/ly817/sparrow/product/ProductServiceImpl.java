@@ -1,5 +1,6 @@
 package org.ly817.sparrow.product;
 
+import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.feign.FProductService;
 
@@ -8,8 +9,11 @@ import org.ly817.sparrow.api.pojo.ProductExample;
 import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.product.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,15 +32,16 @@ public class ProductServiceImpl implements FProductService {
     private SnowflakeIdWorker idWorker;
 
     @Override
-    public Product addProduct(Product product) throws APIException {
+    public Product addProduct(@RequestBody Product product) throws APIException {
         product.setProductId(idWorker.nextId());
+        product.setAddTime(new Date());
         productDao.insert(product);
-        return null;
+        return product;
     }
 
     @Override
-    public Product getProduct(Long productId) throws APIException {
-        return null;
+    public Product getProduct(@PathVariable("productId") Long productId) throws APIException {
+        return productDao.selectByPrimaryKey(productId);
     }
 
     @Override
@@ -50,8 +55,21 @@ public class ProductServiceImpl implements FProductService {
         if (list.size() > 0) {
             return list.get(0);
         } else {
-
+            throw new APIException(APIExceptionType.INVENTORY_NOT_ENOUGH);
         }
-        return null;
+    }
+
+    /**
+     * 扣减库存 未考虑并发
+     * @param productId 商品id
+     * @param number 扣减商品数
+     */
+    @Override
+    public void updateProductInventory(@PathVariable("productId") Long productId,
+                                       @PathVariable("number") Integer number) {
+        int result = productDao.updateInventoryByProductId(productId,number);
+        if (result == 0){
+            throw new APIException(APIExceptionType.INVENTORY_NOT_ENOUGH);
+        }
     }
 }

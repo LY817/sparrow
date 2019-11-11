@@ -29,4 +29,6 @@ public interface ProductDao {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+
+    int updateInventoryByProductId(@Param("productId") Long productId,@Param("number") Integer number);
 }

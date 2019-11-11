@@ -1,12 +1,15 @@
 package org.ly817.sparrow.order.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.ly817.sparrow.api.pojo.Order;
 import org.ly817.sparrow.api.pojo.OrderExample;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Mapper
 public interface OrderDao {
     long countByExample(OrderExample example);
 

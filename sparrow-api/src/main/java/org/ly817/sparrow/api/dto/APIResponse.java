@@ -1,7 +1,7 @@
 package org.ly817.sparrow.api.dto;
 
-import com.alibaba.fastjson.JSON;
-import org.ly817.sparrow.api.exception.APIException;
+import lombok.*;
+import org.ly817.sparrow.api.enums.APIExceptionType;
 
 import java.io.Serializable;
 
@@ -11,53 +11,28 @@ import java.io.Serializable;
  * <p>
  * Description:
  */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class APIResponse implements Serializable {
 
-    public static APIResponse success(Object payLoad){
-        APIResponse response = new APIResponse();
-        response.setData(payLoad);
-        return response;
-    }
-
-    public static APIResponse exception(APIException e){
-        APIResponse response = new APIResponse();
-        response.setCode(e.getCode());
-        response.setMsg(e.getMessage());
-        return response;
-    }
-
-    private String code = "200";
+    private String code;
 
     private String msg;
 
-    private Object data;
+    private Object payload;
 
-    public String getCode() {
-        return code;
+    public boolean isSuccess(){
+        return "200".equals(code);
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public APIResponse(APIExceptionType exceptionType) {
+        this.setCode(exceptionType.getCode());
+        this.setMsg(exceptionType.getMsg());
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
+    public static APIResponse success(Object data){
+        return APIResponse.builder().code("200").payload(data).build();
     }
 }
