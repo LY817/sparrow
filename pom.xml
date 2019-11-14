@@ -33,6 +33,7 @@
         <module>sparrow-ms-product</module>
         <module>sparrow-ms-trade-log</module>
         <module>sparrow-ms-coupon</module>
+        <module>sparrow-ws-push</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
