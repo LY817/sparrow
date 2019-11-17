@@ -8,6 +8,7 @@ import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
+import org.ly817.sparrow.api.feign.FAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +22,13 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
     private static final String URI = "push";
 
     private WebSocketServerHandshaker handshaker;
+
+    // 业务处理服务引用，从Server启动时传入
+    public FAdminService adminService;
+
+    public PushWebSocketHandler(FAdminService adminService) {
+        this.adminService = adminService;
+    }
 
     /**
      * 客户端连接上服务时，注册到PushClientCenter
@@ -132,7 +140,7 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
         //可以对消息进行处理
         //群发
-        for (Channel channel : PushClientCenter.channels) {
+        for (Channel channel : PushClientCenter.globalChannels) {
             channel.writeAndFlush(new TextWebSocketFrame(((TextWebSocketFrame) msg).text()));
         }
 
@@ -156,6 +164,9 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
         String uri = req.uri();
         if (!uri.substring(1).equals(URI)) {
             // TODO: 2019/11/17 根据不同的uri 对应不同的处理逻辑
+            String token = "";
+            String userId = "";
+            adminService.auth(userId,token);
             ctx.close();
         }
         ctx.attr(AttributeKey.valueOf("type")).set(uri);

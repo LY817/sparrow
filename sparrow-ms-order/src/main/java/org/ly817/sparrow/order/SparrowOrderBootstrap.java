@@ -1,7 +1,7 @@
 package org.ly817.sparrow.order;
 
 import org.ly817.sparrow.api.feign.FCouponService;
-import org.ly817.sparrow.api.feign.FInventoryService;
+
 import org.ly817.sparrow.api.feign.FProductService;
 import org.ly817.sparrow.api.feign.FTradeLogService;
 import org.mybatis.spring.annotation.MapperScan;

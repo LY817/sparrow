@@ -2,6 +2,7 @@ package org.ly817.sparrow.api.dto;
 
 import lombok.*;
 import org.ly817.sparrow.api.enums.APIExceptionType;
+import org.ly817.sparrow.api.exception.APIException;
 
 import java.io.Serializable;
 
@@ -34,5 +35,12 @@ public class APIResponse implements Serializable {
 
     public static APIResponse success(Object data){
         return APIResponse.builder().code("200").payload(data).build();
+    }
+
+    public static APIResponse exception(APIException e) {
+        return APIResponse.builder()
+                .code(e.getCode())
+                .msg(e.getMessage())
+                .payload(e).build();
     }
 }

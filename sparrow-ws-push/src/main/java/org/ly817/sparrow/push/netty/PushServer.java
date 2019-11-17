@@ -13,6 +13,8 @@ import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
+import org.ly817.sparrow.api.feign.FAdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +26,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class PushServer {
+
+    @Autowired
+    private FAdminService adminService;
 
     @Value("${push.server.port}")
     public Integer port = 6666;
@@ -58,7 +63,7 @@ public class PushServer {
                         // 进行设置心跳检测
                         socketChannel.pipeline().addLast(new IdleStateHandler(60,30,60*30, TimeUnit.SECONDS));
                         // 配置通道处理  来进行业务处理
-                        socketChannel.pipeline().addLast(new PushWebSocketHandler());
+                        socketChannel.pipeline().addLast(new PushWebSocketHandler(adminService));
 
                     }
                 }).option(ChannelOption.SO_BACKLOG,1024)
