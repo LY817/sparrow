@@ -17,7 +17,7 @@
     }
 
     if(window.WebSocket){
-        socket = new WebSocket("ws://127.0.0.1:8000/push/luoyu/d7e48a81e4ff4e6cb696df654126c008");
+        socket = new WebSocket("ws://127.0.0.1:8000/push/luoyu/992ee2f92ac647c29d92902cc64fc53e");
         socket.onmessage = function(event){
             console.log("接收到消息" + event.data);
         };

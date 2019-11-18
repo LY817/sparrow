@@ -1,13 +1,11 @@
 # 启动命令行参数占位符的默认值
 cmd:
   server: "127.0.0.1"
-  mysql:
-    ip: "localhost"
   push:
     port: 8000
 
-#server:
-#  port: 10009
+server:
+  port: 18000
 management:
   endpoints:
     web:
@@ -16,7 +14,7 @@ spring:
   application:
     name: sparrow-ws-push
   redis:
-    host: "localhost"
+    host: "192.168.56.101"
 ##    url: "192.168.3.17"
 
 debug: true

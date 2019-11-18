@@ -172,7 +172,8 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
             if (user == null) {
                 ctx.close();
             } else {
-                logger.error(user.toString());
+                // 用户信息和channel注册到PushClientCenter
+                PushClientCenter.registerUserChannelId(user.getUserId(),ctx.channel().id());
             }
         }
         ctx.attr(AttributeKey.valueOf("type")).set(uri);

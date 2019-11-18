@@ -4,6 +4,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelId;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
 import java.util.Map;
@@ -34,9 +35,9 @@ public class PushClientCenter {
      * 分组群发
      * 根据不同的业务
      */
-    public static Map<String,ChannelId> map = new ConcurrentHashMap<>();
+    public static Map<String,ChannelGroup> unitChannelGroupMapping = new ConcurrentHashMap<>();
 
-    public static Map<String,ChannelId> map1 = new ConcurrentHashMap<>();
+    public static Map<String,ChannelId> userChannelIdMapping = new ConcurrentHashMap<>();
 
     public static boolean addClient(Channel clientChannel) {
         return globalChannels.add(clientChannel);
@@ -44,6 +45,55 @@ public class PushClientCenter {
 
     public static boolean removeClient(Channel clientChannel){
         return globalChannels.remove(clientChannel);
+    }
+
+    public static void registerUserChannelId(String userId,ChannelId channelId){
+        userChannelIdMapping.put(userId,channelId);
+    }
+
+    public static void removeUserChannelId(String userId){
+        userChannelIdMapping.remove(userId);
+    }
+
+    public static Channel findChannelByUserId(String userId){
+        ChannelId channelId = userChannelIdMapping.get(userId);
+        if (channelId != null) {
+            return globalChannels.find(channelId);
+        } else {
+            return null;
+        }
+    }
+
+    public static void sendMsgByUserId(String userId,String msg){
+        Channel channel = findChannelByUserId(userId);
+        if (channel != null) {
+            channel.writeAndFlush(new TextWebSocketFrame(msg));
+        }
+    }
+
+    public static void globalBroadcasting(String msg){
+        globalChannels.writeAndFlush(new TextWebSocketFrame(msg));
+    }
+
+    /**
+     * 将连接注册到对应的业务分组
+     * @param unitId
+     * @param channel
+     */
+    public static void registerChannelByUnit(String unitId,Channel channel){
+        ChannelGroup unitGroup = unitChannelGroupMapping.get(unitId);
+        if (unitGroup == null) {
+            unitGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+            unitChannelGroupMapping.put(unitId,unitGroup);
+        }
+        unitGroup.add(channel);
+    }
+
+    public static void removeChannelFromGroup(String unitId,Channel channel){
+        ChannelGroup unitGroup = unitChannelGroupMapping.get(unitId);
+        if (unitGroup != null) {
+            unitGroup.remove(channel);
+        }
     }
 
 }
