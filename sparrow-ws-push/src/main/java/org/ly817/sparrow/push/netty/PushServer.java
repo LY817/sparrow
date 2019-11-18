@@ -14,6 +14,8 @@ import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.ly817.sparrow.api.feign.FAdminService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -24,14 +26,16 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by LuoYu on 2019/11/15.
  */
-@Component
+@Component("pushServer")
 public class PushServer {
+
+    private final Logger logger = LoggerFactory.getLogger(PushServer.class);
 
     @Autowired
     private FAdminService adminService;
 
-    @Value("${push.server.port}")
-    public Integer port = 6666;
+    @Value("${cmd.push.port}")
+    public Integer port;
 
     public Integer getPort() {
         return port;
@@ -41,14 +45,14 @@ public class PushServer {
         this.port = port;
     }
 
+    /**
+     * 启动netty服务
+     */
     public void start(){
-
         EventLoopGroup boss = new NioEventLoopGroup();
-
         EventLoopGroup worker = new NioEventLoopGroup();
 
         ServerBootstrap bootstrap = new ServerBootstrap();
-
         bootstrap.group(boss,worker).channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override

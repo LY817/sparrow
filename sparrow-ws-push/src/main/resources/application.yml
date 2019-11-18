@@ -3,6 +3,8 @@ cmd:
   server: "127.0.0.1"
   mysql:
     ip: "localhost"
+  push:
+    port: 6666
 
 #server:
 #  port: 10009
@@ -17,7 +19,7 @@ spring:
     host: "localhost"
 ##    url: "192.168.3.17"
 
-debug: true
+#debug: true
 
 #  profiles:
 #    active: dev # 会被spring.cloud.socketio.profile指定的远程配置文件替代
