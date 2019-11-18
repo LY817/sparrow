@@ -48,6 +48,7 @@ public class AdminServiceImpl implements IAdminService {
             authDTO.setRefreshToken(refreshToken);
         } else {
             authDTO.setAuthFlag(false);
+            throw new APIException(APIExceptionType.AUTH_FAILED);
         }
         return authDTO;
     }

@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by LuoYu on 2019/9/24.
  */
-@RequestMapping("admin")
+@RequestMapping("/users")
 public interface IAdminService {
 
     //===========用户身份管理=============
 
-    @PostMapping("/user/login")
+    @PostMapping("/login")
     AuthDTO login(@RequestParam("userName") String userName,@RequestParam("password") String password);
 
-    @PostMapping("/user/refresh")
+    @PostMapping("/refresh")
     AuthDTO refreshToken(@RequestParam("userName") String userName,@RequestParam("refreshToken") String refreshToken);
 
-    @PostMapping("/user/auth")
+    @PostMapping("/auth")
     User auth(@RequestParam("userName") String userName,@RequestParam("token") String token);
 
-    @GetMapping("/user/{userName}")
+    @GetMapping("/{userName}")
     User findUserByUserName(@PathVariable("userName") String userName);
 
     //=============动态网关映射管理==============
