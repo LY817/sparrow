@@ -9,6 +9,7 @@ import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
 import org.ly817.sparrow.api.feign.FAdminService;
+import org.ly817.sparrow.api.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -164,10 +165,15 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
         String uri = req.uri();
         if (!uri.substring(1).equals(URI)) {
             // TODO: 2019/11/17 根据不同的uri 对应不同的处理逻辑
-            String token = "";
-            String userId = "";
-            adminService.auth(userId,token);
-            ctx.close();
+            String[] uriInfos = uri.split("/");
+            String token = uriInfos[3];
+            String userName = uriInfos[2];
+            User user = adminService.auth(userName,token);
+            if (user == null) {
+                ctx.close();
+            } else {
+                logger.error(user.toString());
+            }
         }
         ctx.attr(AttributeKey.valueOf("type")).set(uri);
         //可以通过url获取其他参数

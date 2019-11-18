@@ -17,26 +17,17 @@
     }
 
     if(window.WebSocket){
-        socket = new WebSocket("ws://localhost:6666/websocket");
-
+        socket = new WebSocket("ws://127.0.0.1:8000/push/luoyu/d7e48a81e4ff4e6cb696df654126c008");
         socket.onmessage = function(event){
-
-            var ta = document.getElementById('responseText');
-            ta.value += event.data+"\r\n";
+            console.log("接收到消息" + event.data);
         };
 
         socket.onopen = function(event){
-
-            var ta = document.getElementById('responseText');
-            ta.value = "打开WebSoket 服务正常，浏览器支持WebSoket!"+"\r\n";
-
+            console.log('打开WebSoket 服务正常，浏览器支持WebSocket!');
         };
 
         socket.onclose = function(event){
-
-            var ta = document.getElementById('responseText');
-            ta.value = "";
-            ta.value = "WebSocket 关闭"+"\r\n";
+            console.log("WebSocket 关闭");
         };
     }else{
         alert("您的浏览器不支持WebSocket协议！");

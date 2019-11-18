@@ -76,6 +76,7 @@ public class PushServer {
         try {
             Channel channel = bootstrap.bind(port).sync().channel();
             channel.closeFuture().sync();
+            logger.info("PushServer 启动成功");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
