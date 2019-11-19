@@ -20,6 +20,26 @@ public class UserServiceImpl implements FUserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * 新增用户
+     *
+     * @param user
+     */
+    @Override
+    public User addUser(User user) {
+        return null;
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     */
+    @Override
+    public User updateUser(User user) {
+        return null;
+    }
+
     @Override
     public User findUserById(Long userId) {
         return userDao.selectByPrimaryKey(userId);

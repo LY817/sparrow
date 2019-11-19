@@ -7,7 +7,6 @@ import org.ly817.sparrow.api.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
 
@@ -17,13 +16,34 @@ import java.util.Random;
  * <p>
  * Description:
  */
-@RestController
+//@RestController
 //@RequestMapping("/user")
 // 为feign调用提供服务时 不使用RequestMapping设置访问路径 与feign客户端接口实现保存一致
 // 所有规约有共同继承的接口控制
+@Deprecated
 public class UserFeignServiceImpl implements IUserService {
 
     private final Logger logger = LoggerFactory.getLogger(UserFeignServiceImpl.class);
+
+    /**
+     * 新增用户
+     *
+     * @param user
+     */
+    @Override
+    public org.ly817.sparrow.api.pojo.User addUser(org.ly817.sparrow.api.pojo.User user) {
+        return null;
+    }
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     */
+    @Override
+    public org.ly817.sparrow.api.pojo.User updateUser(org.ly817.sparrow.api.pojo.User user) {
+        return null;
+    }
 
     @Override
     @HystrixCommand(
@@ -33,10 +53,10 @@ public class UserFeignServiceImpl implements IUserService {
         },
         fallbackMethod = "fbFindUserById"
     )
-    public User findUserById(@PathVariable Long userId) {
-        User user = new User();
+    public org.ly817.sparrow.api.pojo.User findUserById(@PathVariable Long userId) {
+        org.ly817.sparrow.api.pojo.User user = new org.ly817.sparrow.api.pojo.User();
         if (userId == 1000L) {
-            user.setUserId(userId+"");
+            user.setUserId(userId);
             user.setUserName("luoyu");
             user.setPassword("luoyu666");
         }

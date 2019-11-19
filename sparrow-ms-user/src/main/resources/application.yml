@@ -1,3 +1,10 @@
+# 启动命令行参数占位符的默认值
+cmd:
+  server: "127.0.0.1"
+  mysql:
+    ip: "localhost"
+
+
 server:
   port: 10000
 management:

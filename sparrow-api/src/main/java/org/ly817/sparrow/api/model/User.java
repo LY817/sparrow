@@ -18,6 +18,8 @@ public class User implements Serializable {
 
     private Long creditScore;
 
+    private String userType;
+
     public String getUserId() {
         return userId;
     }
@@ -48,5 +50,13 @@ public class User implements Serializable {
 
     public void setCreditScore(Long creditScore) {
         this.creditScore = creditScore;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

@@ -5,7 +5,7 @@ cmd:
     ip: "localhost"
 
 server:
-  port: 10000
+  port: 9000
 management:
   endpoints:
     web:
