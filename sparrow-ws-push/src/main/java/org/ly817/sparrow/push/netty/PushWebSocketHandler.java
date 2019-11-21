@@ -12,10 +12,13 @@ import org.ly817.sparrow.api.feign.FAdminService;
 import org.ly817.sparrow.api.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by LuoYu on 2019/11/16.
  */
+@Component
 public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
     private final Logger logger = LoggerFactory.getLogger(PushWebSocketHandler.class);
@@ -24,12 +27,8 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
     private WebSocketServerHandshaker handshaker;
 
-    // 业务处理服务引用，从Server启动时传入
-    public FAdminService adminService;
-
-    public PushWebSocketHandler(FAdminService adminService) {
-        this.adminService = adminService;
-    }
+    @Autowired
+    private FAdminService adminService;
 
     /**
      * 客户端连接上服务时，注册到PushClientCenter

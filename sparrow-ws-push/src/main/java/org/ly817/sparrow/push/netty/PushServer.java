@@ -32,7 +32,7 @@ public class PushServer {
     private final Logger logger = LoggerFactory.getLogger(PushServer.class);
 
     @Autowired
-    private FAdminService adminService;
+    private PushWebSocketHandler pushWebSocketHandler;
 
     @Value("${cmd.push.port}")
     public Integer port;
@@ -67,7 +67,7 @@ public class PushServer {
                         // 进行设置心跳检测
                         socketChannel.pipeline().addLast(new IdleStateHandler(60,30,60*30, TimeUnit.SECONDS));
                         // 配置通道处理  来进行业务处理
-                        socketChannel.pipeline().addLast(new PushWebSocketHandler(adminService));
+                        socketChannel.pipeline().addLast(pushWebSocketHandler);
 
                     }
                 }).option(ChannelOption.SO_BACKLOG,1024)
