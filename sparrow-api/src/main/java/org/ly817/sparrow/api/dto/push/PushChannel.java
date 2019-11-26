@@ -1,4 +1,4 @@
-package org.ly817.sparrow.push.netty;
+package org.ly817.sparrow.api.dto.push;
 
 /**
  * Created by LuoYu on 2019/11/15.

@@ -17,7 +17,10 @@ spring:
     host: "192.168.56.101"
 ##    url: "192.168.3.17"
 
+
 debug: true
+rocketmq:
+  name-server: 192.168.56.101:9876
 
 #  profiles:
 #    active: dev # 会被spring.cloud.socketio.profile指定的远程配置文件替代

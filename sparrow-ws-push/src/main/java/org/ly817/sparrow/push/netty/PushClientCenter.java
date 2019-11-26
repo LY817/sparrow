@@ -6,6 +6,8 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import org.ly817.sparrow.api.enums.APIExceptionType;
+import org.ly817.sparrow.api.exception.APIException;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,29 +35,51 @@ public class PushClientCenter {
 
     /**
      * 分组群发
-     * 根据不同的业务
+     * 根据不同的业务分组
      */
     public static Map<String,ChannelGroup> unitChannelGroupMapping = new ConcurrentHashMap<>();
 
+    /**
+     * 维护userId-channelId对应关系
+     * 方便通过userId在globalChannels中获取客户端连接
+     */
     public static Map<String,ChannelId> userChannelIdMapping = new ConcurrentHashMap<>();
 
+    /**
+     * 添加连接到globalChannels
+     * @param clientChannel
+     */
     public static boolean addClient(Channel clientChannel) {
         return globalChannels.add(clientChannel);
     }
 
+    /**
+     * 从globalChannels中删除连接
+     * @param clientChannel
+     */
     public static boolean removeClient(Channel clientChannel){
         return globalChannels.remove(clientChannel);
     }
 
+    /**
+     * 注册userId-channelId对应关系
+     */
     public static void registerUserChannelId(String userId,ChannelId channelId){
         userChannelIdMapping.put(userId,channelId);
     }
 
+    /**
+     * 注销userId-channelId对应关系
+     */
     public static void removeUserChannelId(String userId){
         userChannelIdMapping.remove(userId);
     }
 
-    public static Channel findChannelByUserId(String userId){
+    /**
+     * 根据userId获取连接
+     * @param userId
+     */
+    private static Channel findChannelByUserId(String userId){
         ChannelId channelId = userChannelIdMapping.get(userId);
         if (channelId != null) {
             return globalChannels.find(channelId);
@@ -64,13 +88,28 @@ public class PushClientCenter {
         }
     }
 
+    private static void removeChannelByUserId(String userId){
+        Channel channel = findChannelByUserId(userId);
+        if (channel != null) {
+            // 注销userId-channelId对应关系
+            removeUserChannelId(userId);
+
+            removeClient(channel);
+        }
+    }
+
     public static void sendMsgByUserId(String userId,String msg){
         Channel channel = findChannelByUserId(userId);
         if (channel != null) {
             channel.writeAndFlush(new TextWebSocketFrame(msg));
+        } else {
+            throw new APIException(APIExceptionType.PUSH_USER_NOT_ONLINE);
         }
     }
 
+    /**
+     * 全部连接进行广播
+     */
     public static void globalBroadcasting(String msg){
         globalChannels.writeAndFlush(new TextWebSocketFrame(msg));
     }

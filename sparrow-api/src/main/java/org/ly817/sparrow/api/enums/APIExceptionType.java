@@ -24,7 +24,11 @@ public enum APIExceptionType {
     ORDER_AMOUNT_INVALID("20003", "订单总价不合法"),
     // 优惠券
     COUPON_NOT_EXIST("30000","优惠券不存在"),
-    COUPON_NOT_USED("30001","优惠券已使用"), ;
+    COUPON_NOT_USED("30001","优惠券已使用"),
+
+    // 推送
+    PUSH_USER_NOT_ONLINE("90000","用户不在线"),
+    ;
 
     private String  code;
 
