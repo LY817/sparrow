@@ -14,8 +14,19 @@ public class Main {
 //        String[] strings = "eqwe-fqtf-qwewe-luoyu666".split("-");
 //        System.out.println(strings[strings.length - 1]);
 
-        if (true && false) {
-            System.out.println();
-        }
+        test();
+
+        new Thread(() -> {
+            Main.test1();
+        }).start();// run并没有开一个新的线程
+        System.out.println("after");
+    }
+
+    public static void test() {
+        System.out.println("test");
+    }
+
+    public static void test1() {
+        System.out.println("test1");
     }
 }

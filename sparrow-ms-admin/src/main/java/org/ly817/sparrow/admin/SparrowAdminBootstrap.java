@@ -1,9 +1,12 @@
 package org.ly817.sparrow.admin;
 
-import org.mybatis.spring.annotation.MapperScan;
+import org.ly817.sparrow.api.feign.FUserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClients;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author LY
@@ -13,7 +16,14 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@MapperScan("org.ly817.sparrow.admin.dao")
+@RibbonClients({
+        @RibbonClient("name=sparrow-ms-user")
+})
+@EnableFeignClients(
+        basePackageClasses = {
+                FUserService.class
+        }
+)
 public class SparrowAdminBootstrap {
     public static void main(String[] args) {
         SpringApplication.run(SparrowAdminBootstrap.class,args);

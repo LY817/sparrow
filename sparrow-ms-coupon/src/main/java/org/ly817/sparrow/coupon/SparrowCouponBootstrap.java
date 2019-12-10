@@ -1,7 +1,5 @@
 package org.ly817.sparrow.coupon;
 
-import org.ly817.sparrow.api.feign.FInventoryService;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;

@@ -37,4 +37,17 @@ public interface IUserService {
     @GetMapping("/{userId}")
     User findUserById(@PathVariable("userId") Long userId);
 
+    @GetMapping("/{userName}")
+    User findUserByName(@PathVariable("userName") String userName);
+
+    /**
+     * 根据用户名和密码查找记录
+     * @param userName 用户名
+     * @param pwd 密码
+     * @return
+     */
+    @GetMapping("/{userName}/{pwd}")
+    User findUserByUserNameAndPwd(@PathVariable("userName") String userName,
+                                  @PathVariable("pwd") String pwd);
+
 }

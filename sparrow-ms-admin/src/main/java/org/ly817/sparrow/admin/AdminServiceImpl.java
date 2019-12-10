@@ -1,10 +1,12 @@
 package org.ly817.sparrow.admin;
 
-import org.ly817.sparrow.admin.dao.UserMapper;
 import org.ly817.sparrow.api.dto.AuthDTO;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.model.User;
+import org.ly817.sparrow.api.feign.FAdminService;
+import org.ly817.sparrow.api.feign.FUserService;
+
+import org.ly817.sparrow.api.pojo.User;
 import org.ly817.sparrow.api.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,16 +27,16 @@ import java.util.concurrent.TimeUnit;
 public class AdminServiceImpl implements IAdminService {
 
     @Autowired
-    private UserMapper userMapper;
+    RedisTemplate redisTemplate;
 
     @Autowired
-    RedisTemplate redisTemplate;
+    private FUserService fUserService;
 
 
     @Override
     public AuthDTO login(@RequestParam("userName") String userName,
                          @RequestParam("password") String password) {
-        User existUser = userMapper.findUserByUserNameAndPwd(userName,password);
+        User existUser = fUserService.findUserByUserNameAndPwd(userName,password);
         AuthDTO authDTO = new AuthDTO();
         if (existUser != null) {
             String authKey = "AUTH_" + existUser.getUserName();
@@ -68,10 +70,5 @@ public class AdminServiceImpl implements IAdminService {
         } else {
             throw new APIException(APIExceptionType.AUTH_FAILED);
         }
-    }
-
-    @Override
-    public User findUserByUserName(@PathVariable("userName") String userName) {
-        return userMapper.findUserByUsername(userName);
     }
 }

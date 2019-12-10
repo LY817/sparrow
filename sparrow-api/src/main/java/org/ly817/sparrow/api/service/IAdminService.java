@@ -1,14 +1,13 @@
 package org.ly817.sparrow.api.service;
 
 import org.ly817.sparrow.api.dto.AuthDTO;
-import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.model.User;
+import org.ly817.sparrow.api.pojo.User;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/9/24.
  */
-@RequestMapping("/users")
+@RequestMapping("/admin")
 public interface IAdminService {
 
     //===========用户身份管理=============
@@ -22,8 +21,8 @@ public interface IAdminService {
     @PostMapping("/auth")
     User auth(@RequestParam("userName") String userName,@RequestParam("token") String token);
 
-    @GetMapping("/{userName}")
-    User findUserByUserName(@PathVariable("userName") String userName);
+//    @GetMapping("/{userName}")
+//    User findUserByUserName(@PathVariable("userName") String userName);
 
     //=============动态网关映射管理==============
 

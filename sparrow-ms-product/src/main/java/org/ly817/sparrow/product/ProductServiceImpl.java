@@ -6,6 +6,7 @@ import org.ly817.sparrow.api.feign.FProductService;
 
 import org.ly817.sparrow.api.pojo.Product;
 import org.ly817.sparrow.api.pojo.ProductExample;
+import org.ly817.sparrow.api.service.IProductService;
 import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.product.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.List;
  * Description:
  */
 @RestController
-public class ProductServiceImpl implements FProductService {
+public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductDao productDao;

@@ -25,6 +25,10 @@ public enum APIExceptionType {
     // 优惠券
     COUPON_NOT_EXIST("30000","优惠券不存在"),
     COUPON_NOT_USED("30001","优惠券已使用"),
+    // 用户
+    USER_NAME_DUPLICATE("40000","用户名重复"),
+    USER_NAME_NOT_FOUND("40001","用户名不存在用户"),
+    USER_NAME_PWD_INVALID("40002","用户名密码不匹配"),
 
     // 推送
     PUSH_USER_NOT_ONLINE("90000","用户不在线"),
