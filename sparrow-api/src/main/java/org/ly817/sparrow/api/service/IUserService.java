@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.*;
  * Description:
  * 用户服务接口
  */
-@RequestMapping("/users")
+//@RequestMapping("/users")
 public interface IUserService {
 
     /**
      * 新增用户
      * @param user
      */
-    @PostMapping
+    @PostMapping("/users")
     User addUser(@RequestBody User user);
 
     /**
      * 更新用户
      * @param user
      */
-    @PatchMapping
+    @PatchMapping("/users")
     User updateUser(@RequestBody User user);
 
     /**
@@ -34,10 +34,10 @@ public interface IUserService {
      * @param userId 用户主键id @PathVariable注解必须在实现类中
      * @return User
      */
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}")
     User findUserById(@PathVariable("userId") Long userId);
 
-    @GetMapping("/{userName}")
+    @GetMapping("/users/{userName}")
     User findUserByName(@PathVariable("userName") String userName);
 
     /**
@@ -46,7 +46,7 @@ public interface IUserService {
      * @param pwd 密码
      * @return
      */
-    @GetMapping("/{userName}/{pwd}")
+    @GetMapping("/users/{userName}/{pwd}")
     User findUserByUserNameAndPwd(@PathVariable("userName") String userName,
                                   @PathVariable("pwd") String pwd);
 

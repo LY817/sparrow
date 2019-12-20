@@ -16,17 +16,21 @@ public class Main {
 
         test();
 
-        new Thread(() -> {
-            Main.test1();
-        }).start();// run并没有开一个新的线程
-        System.out.println("after");
+//        new Thread(() -> {
+//            Main.test1();
+//        }).start();// run并没有开一个新的线程
+//        System.out.println("after");
     }
 
     public static void test() {
         System.out.println("test");
     }
 
-    public static void test1() {
-        System.out.println("test1");
+    public void paramTest(String a) {
+        String b = "b";
     }
+
+//    public static void test1() {
+//        System.out.println("test1");
+//    }
 }

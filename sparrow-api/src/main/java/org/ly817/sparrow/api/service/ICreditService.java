@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by LuoYu on 2019/8/14.
  */
-@RequestMapping("credit")
+//@RequestMapping("credit")
 public interface ICreditService {
 
     /**
      * 添加积分
      */
-    @PostMapping("add/{score}")
+    @PostMapping("credit/add/{score}")
     void addCreditScore(@PathVariable("userId") Long userId,@PathVariable("score") int score);
 }

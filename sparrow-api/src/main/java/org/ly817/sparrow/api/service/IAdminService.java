@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by LuoYu on 2019/9/24.
  */
-@RequestMapping("/admin")
+//@RequestMapping
 public interface IAdminService {
 
     //===========用户身份管理=============
 
-    @PostMapping("/login")
+    @PostMapping("/admin/login")
     AuthDTO login(@RequestParam("userName") String userName,@RequestParam("password") String password);
 
-    @PostMapping("/refresh")
+    @PostMapping("/admin/refresh")
     AuthDTO refreshToken(@RequestParam("userName") String userName,@RequestParam("refreshToken") String refreshToken);
 
-    @PostMapping("/auth")
+    @PostMapping("/admin/auth")
     User auth(@RequestParam("userName") String userName,@RequestParam("token") String token);
 
 //    @GetMapping("/{userName}")

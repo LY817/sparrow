@@ -29,6 +29,7 @@ public enum APIExceptionType {
     USER_NAME_DUPLICATE("40000","用户名重复"),
     USER_NAME_NOT_FOUND("40001","用户名不存在用户"),
     USER_NAME_PWD_INVALID("40002","用户名密码不匹配"),
+    USER_ADD_PARAM_INVALID("40003","新增用户参数异常"),
 
     // 推送
     PUSH_USER_NOT_ONLINE("90000","用户不在线"),

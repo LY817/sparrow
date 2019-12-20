@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by LuoYu on 2019/8/14.
  * 支付接口
  */
-@RequestMapping("pay")
+//@RequestMapping("pay")
 public interface IPayService {
 
     /**
@@ -21,14 +21,14 @@ public interface IPayService {
      *
      * @return 流水号
      */
-    @PostMapping("payCheck")
+    @PostMapping("/pay/payCheck")
     String payCheck(@RequestBody String payToken,@RequestBody Double amount);
 
 
     /**
      * 第三方支付回调
      */
-    @PostMapping("payCallback")
+    @PostMapping("/pay/payCallback")
     String payCallback();
 
 }

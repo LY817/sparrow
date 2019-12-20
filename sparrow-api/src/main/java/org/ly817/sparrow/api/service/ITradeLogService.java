@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Description:
  * 交易日志记录服务
  */
-@RequestMapping("/trade/log")
+//@RequestMapping("/trade/log")
 public interface ITradeLogService {
 
-    @PostMapping("/order-product")
+    @PostMapping("/trade/log/order-product")
     int addOrderProductLog(@RequestBody OrderProductLog orderProductLog);
 
-    @PostMapping("/order-user-balance")
+    @PostMapping("/trade/log/order-user-balance")
     int addOrderUserBalanceLog(@RequestBody OrderUserBalanceLog orderUserBalanceLog);
 
 

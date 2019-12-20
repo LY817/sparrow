@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 设备微服务接口
  */
 @Deprecated
-@RequestMapping("device")
+//@RequestMapping("device")
 public interface IDeviceService {
 
     @GetMapping("/register/{imei}/{userId}")

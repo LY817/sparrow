@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by LuoYu on 2019/10/11.
  * 商品服务
  */
-@RequestMapping("/products")
+//@RequestMapping("/products")
 public interface IProductService {
     /**
      * 新增商品
@@ -20,21 +20,21 @@ public interface IProductService {
      *
      *
      */
-    @PostMapping
+    @PostMapping("/products")
     Product addProduct(@RequestBody Product product);
 
     /**
      * 根据商品id查询商品
      * @param productId
      */
-    @GetMapping("/{productId}")
+    @GetMapping("/products/{productId}")
     Product getProduct(@PathVariable("productId") Long productId);
 
     /**
      * 检查库存
      */
     @Deprecated
-    @GetMapping("/{productId}/inventory/{checkNumber}")
+    @GetMapping("/products/{productId}/inventory/{checkNumber}")
     Product checkProductInventory(@PathVariable("productId") Long productId,
                                   @PathVariable("checkNumber") Integer checkNumber);
 
@@ -42,7 +42,7 @@ public interface IProductService {
      * 增加商品库存
      * 乐观锁实现
      */
-    @PatchMapping("/{productId}/inventory/{number}")
+    @PatchMapping("/products/{productId}/inventory/{number}")
     void updateProductInventory(@PathVariable("productId") Long productId,
                                 @PathVariable("number") Integer number);
 }
