@@ -8,8 +8,9 @@ import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.timeout.IdleStateEvent;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
-import org.ly817.sparrow.api.feign.FAdminService;
-import org.ly817.sparrow.api.model.User;
+
+import org.ly817.sparrow.api.pojo.User;
+import org.ly817.sparrow.api.service.IAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
     private WebSocketServerHandshaker handshaker;
 
     @Autowired
-    private FAdminService adminService;
+    private IAdminService adminService;
 
     /**
      * 客户端连接上服务时，注册到PushClientCenter
@@ -172,7 +173,7 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
                 ctx.close();
             } else {
                 // 用户信息和channel注册到PushClientCenter
-                PushClientCenter.registerUserChannelId(user.getUserId(),ctx.channel().id());
+                PushClientCenter.registerUserChannelId(user.getUserId() + "",ctx.channel().id());
             }
         }
         ctx.attr(AttributeKey.valueOf("type")).set(uri);

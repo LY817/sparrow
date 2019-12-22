@@ -1,19 +1,17 @@
 package org.ly817.sparrow.order;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.feign.FCouponService;
-import org.ly817.sparrow.api.feign.FInventoryService;
-import org.ly817.sparrow.api.feign.FProductService;
 
-import org.ly817.sparrow.api.feign.FTradeLogService;
 import org.ly817.sparrow.api.pojo.Coupon;
 import org.ly817.sparrow.api.pojo.Order;
 import org.ly817.sparrow.api.pojo.OrderProductLog;
 import org.ly817.sparrow.api.pojo.Product;
+import org.ly817.sparrow.api.service.ICouponService;
 import org.ly817.sparrow.api.service.IOrderService;
 
+import org.ly817.sparrow.api.service.IProductService;
+import org.ly817.sparrow.api.service.ITradeLogService;
 import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.order.dao.OrderDao;
 import org.redisson.Redisson;
@@ -40,13 +38,13 @@ public class OrderServiceImpl implements IOrderService {
     private final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
-    private FProductService productService;
+    private IProductService productService;
 
     @Autowired
-    private FCouponService couponService;
+    private ICouponService couponService;
 
     @Autowired
-    private FTradeLogService tradeLogService;
+    private ITradeLogService tradeLogService;
 
     @Autowired
     private SnowflakeIdWorker idWorker;

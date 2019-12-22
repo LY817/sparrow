@@ -1,6 +1,6 @@
 package org.ly817.sparrow.gateway.dynamic;
 
-import org.ly817.sparrow.api.feign.FAdminService;
+import org.ly817.sparrow.api.service.IAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +24,7 @@ public class DynamicRouteLocator extends SimpleRouteLocator implements Refreshab
 
     private static boolean firstFlag = true;
 
-    private FAdminService fAdminService;
+    private IAdminService fAdminService;
 
     private ZuulProperties properties;
 
@@ -33,11 +33,11 @@ public class DynamicRouteLocator extends SimpleRouteLocator implements Refreshab
         this.properties = properties;
     }
 
-    public FAdminService getfAdminService() {
+    public IAdminService getfAdminService() {
         return fAdminService;
     }
 
-    public void setfAdminService(FAdminService fAdminService) {
+    public void setfAdminService(IAdminService fAdminService) {
         this.fAdminService = fAdminService;
     }
 

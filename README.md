@@ -8,9 +8,35 @@ SpringCloud技术栈+docker容器化+k8s发布 练手项目
 ### api
 定义微服务之间的接口和相关实体类
 
+#### 服务接口
+
+feign（服务消费者）+SpringMVC（服务调用者）实现共同的服务接口 作为服务协议
+
+实现伪RPC
+
+公共的服务协议接口 方法上使用XXXMapping标注，分别被SpringMVC的Controller和feign客户端实现
+
+> **注意**不要在公共的服务协议接口的类上标注RequestMapping，可能会导致Ambiguous mapping
+
+#### 实体类
+
+- dto
+- 数据库实体类 
+
 ### global-starter
-被微服务引用，统一处理异常
+统一公共功能的配置 
+
+被所有微服务引用
+
 #### feign自定义异常解析
+
+#### 雪花算法id生成器
+
+全局的id序列号生成器
+
+#### mq同步协议
+
+将通用的业务模块作为starter
 
 
 ### Zuul网关
@@ -70,13 +96,6 @@ xxxx-spring-boot-starter
 ### eureka注册中心 服务发现延时高
 eureka中默认配置，轮询更新服务列表的时间为30s
 通过修改`registryFetchIntervalSeconds`配置来提高服务注册的感知速度
-
-### feign + SpringMVC实现同一个接口
-优点：可以规范服务的提供方和调用方
-踩坑：
-feign不能直接从公共接口（IXxxService）创建调用代理
-需要中间创建一个FXxxService的标记接口，extends IXxxService，并标记`@FeignClient`指定注册在注册中心的对应微服务名称
-否则创建feign客户端bean的时候，创建两个同名的bean，出现`[Ambiguous mapping]`异常
 
 
 ## 容器化

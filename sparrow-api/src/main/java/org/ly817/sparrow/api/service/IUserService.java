@@ -3,6 +3,7 @@ package org.ly817.sparrow.api.service;
 import org.ly817.sparrow.api.exception.APIException;
 
 import org.ly817.sparrow.api.pojo.User;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * 用户服务接口
  */
 //@RequestMapping("/users")
+@FeignClient("sparrow-ms-user")
 public interface IUserService {
 
     /**

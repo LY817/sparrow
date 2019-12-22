@@ -5,7 +5,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.feign.FAdminService;
+import org.ly817.sparrow.api.service.IAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class AuthFilter extends ZuulFilter {
     private final Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 
     @Autowired
-    private FAdminService fAdminService;
+    private IAdminService fAdminService;
 
     /**
      * 过滤器添加的时机

@@ -3,13 +3,14 @@ package org.ly817.sparrow.api.service;
 
 
 import org.ly817.sparrow.api.pojo.Product;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/10/11.
  * 商品服务
  */
-//@RequestMapping("/products")
+@FeignClient(value = "sparrow-ms-product")
 public interface IProductService {
     /**
      * 新增商品

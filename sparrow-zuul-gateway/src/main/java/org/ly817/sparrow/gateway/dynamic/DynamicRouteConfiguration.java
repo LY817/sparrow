@@ -1,6 +1,6 @@
 package org.ly817.sparrow.gateway.dynamic;
 
-import org.ly817.sparrow.api.feign.FAdminService;
+import org.ly817.sparrow.api.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
@@ -25,7 +25,7 @@ public class DynamicRouteConfiguration {
     private ServerProperties server;
 
     @Autowired
-    private FAdminService fAdminService;
+    private IAdminService fAdminService;
 
     @Bean
     public DynamicRouteLocator routeLocator() {

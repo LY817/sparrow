@@ -18,7 +18,7 @@
         <module>sparrow-eureka-server</module>
         <module>sparrow-eureka-client</module>
         <module>sparrow-config</module>
-        <!--<module>sparrow-ms-user</module>-->
+        <module>sparrow-ms-user</module>
         <!--<module>sparrow-ms-device</module>-->
         <module>sparrow-api</module>
         <!--<module>sparrow-gateway</module>-->

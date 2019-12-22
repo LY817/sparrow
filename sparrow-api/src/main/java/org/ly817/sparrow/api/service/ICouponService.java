@@ -1,12 +1,13 @@
 package org.ly817.sparrow.api.service;
 
 import org.ly817.sparrow.api.pojo.Coupon;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/10/30.
  */
-//@RequestMapping("/coupons")
+@FeignClient(value = "sparrow-ms-coupon")
 public interface ICouponService {
 
     /**

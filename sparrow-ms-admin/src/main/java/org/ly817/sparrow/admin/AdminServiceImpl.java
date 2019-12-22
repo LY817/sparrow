@@ -3,14 +3,14 @@ package org.ly817.sparrow.admin;
 import org.ly817.sparrow.api.dto.AuthDTO;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.feign.FAdminService;
-import org.ly817.sparrow.api.feign.FUserService;
 
 import org.ly817.sparrow.api.pojo.User;
 import org.ly817.sparrow.api.service.IAdminService;
+import org.ly817.sparrow.api.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +30,7 @@ public class AdminServiceImpl implements IAdminService {
     RedisTemplate redisTemplate;
 
     @Autowired
-    private FUserService fUserService;
+    private IUserService fUserService;
 
 
     @Override

@@ -3,6 +3,7 @@ package org.ly817.sparrow.api.service;
 import org.ly817.sparrow.api.exception.APIException;
 
 import org.ly817.sparrow.api.pojo.Order;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by LuoYu on 2019/8/14.
  */
 //@RequestMapping
+@FeignClient(value = "sparrow-ms-order")
 public interface IOrderService {
 
     /**

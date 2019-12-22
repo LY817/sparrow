@@ -1,9 +1,9 @@
 package org.ly817.sparrow.order;
 
-import org.ly817.sparrow.api.feign.FCouponService;
 
-import org.ly817.sparrow.api.feign.FProductService;
-import org.ly817.sparrow.api.feign.FTradeLogService;
+import org.ly817.sparrow.api.service.ICouponService;
+import org.ly817.sparrow.api.service.IProductService;
+import org.ly817.sparrow.api.service.ITradeLogService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,9 +29,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 })
 @EnableFeignClients(
         basePackageClasses = {
-                FProductService.class,
-                FCouponService.class,
-                FTradeLogService.class,
+                IProductService.class,
+                ICouponService.class,
+                ITradeLogService.class,
         }
 )
 public class SparrowOrderBootstrap {

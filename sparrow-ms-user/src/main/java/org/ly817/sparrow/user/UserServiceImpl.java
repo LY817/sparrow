@@ -2,14 +2,18 @@ package org.ly817.sparrow.user;
 
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
-import org.ly817.sparrow.api.feign.FUserService;
 
 import org.ly817.sparrow.api.pojo.User;
 import org.ly817.sparrow.api.pojo.UserExample;
+import org.ly817.sparrow.api.service.IUserService;
+import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,7 +24,10 @@ import java.util.List;
  * 用户服务
  */
 @RestController
-public class UserServiceImpl implements FUserService {
+public class UserServiceImpl implements IUserService {
+
+    @Autowired
+    private SnowflakeIdWorker idWorker;
 
     @Autowired
     private UserDao userDao;
@@ -31,8 +38,14 @@ public class UserServiceImpl implements FUserService {
      * @param user
      */
     @Override
-    public User addUser(User user) {
-        return null;
+    public User addUser(@RequestBody User user) {
+        if (user == null) {
+            throw new APIException(APIExceptionType.USER_ADD_PARAM_INVALID);
+        }
+        user.setUserId(idWorker.nextId());
+        user.setRegTime(new Date());
+        userDao.insert(user);
+        return user;
     }
 
     /**
@@ -74,7 +87,8 @@ public class UserServiceImpl implements FUserService {
      * @return
      */
     @Override
-    public User findUserByUserNameAndPwd(String userName, String pwd) {
+    public User findUserByUserNameAndPwd(@PathVariable("userName") String userName,
+                                         @PathVariable("pwd") String pwd) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         criteria.andUserNameEqualTo(userName);
