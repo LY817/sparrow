@@ -25,13 +25,6 @@ public interface IAdminService {
 //    User findUserByUserName(@PathVariable("userName") String userName);
 
     //=============动态网关映射管理==============
-
-    /**
-     *
-     */
-
-
-
     /**
      * 查询当前服务映射关系
      */

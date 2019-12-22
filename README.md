@@ -1,22 +1,63 @@
 # sparrow
 最小化业务逻辑，用来测试微服务各个组件
 
-## 介绍
+# 介绍
+
 SpringCloud技术栈+docker容器化+k8s发布 练手项目
-## 项目结构
+
+## 技术栈
+
+### Spring Cloud Netflix套件
+
+Netflix的其他组件都基于Eureka 
+
+#### Eureka 服务注册与发现
+
+
+
+#### Ribbon 基于客户端的负载均衡
+
+
+
+#### Feign 基于接口的http调用客户端
+
+feign（服务消费者）+SpringMVC（服务调用者）实现共同的服务接口 作为服务协议 实现伪RPC
+
+公共的服务协议接口 方法上使用XXXMapping标注，分别被SpringMVC的Controller和feign客户端实现
+
+> **注意**不要在公共的服务协议接口的类上标注RequestMapping，可能会导致Ambiguous mapping
+
+#### Hystrix 容错
+
+核心订单业务流程进行容错处理
+
+#### Zuul 网关
+
+- 动态配置路由
+
+- 基于代理的负载均衡
+- 性能监控
+- 灰度发布
+- 统一授权 
+
+自定义路由开发 利用到了SpringBoot environment和事件发布机制
+
+### netty
+
+#### WebSocket消息推送服务端
+
+
+
+#### mqtt物联网设备数据上报
+
+
+
+# 项目结构
 
 ### api
 定义微服务之间的接口和相关实体类
 
 #### 服务接口
-
-feign（服务消费者）+SpringMVC（服务调用者）实现共同的服务接口 作为服务协议
-
-实现伪RPC
-
-公共的服务协议接口 方法上使用XXXMapping标注，分别被SpringMVC的Controller和feign客户端实现
-
-> **注意**不要在公共的服务协议接口的类上标注RequestMapping，可能会导致Ambiguous mapping
 
 #### 实体类
 
@@ -26,7 +67,7 @@ feign（服务消费者）+SpringMVC（服务调用者）实现共同的服务�
 ### global-starter
 统一公共功能的配置 
 
-被所有微服务引用
+被微服务引用，简化配置
 
 #### feign自定义异常解析
 
@@ -36,7 +77,7 @@ feign（服务消费者）+SpringMVC（服务调用者）实现共同的服务�
 
 #### mq同步协议
 
-将通用的业务模块作为starter
+将通用的业务模块作为starter，封装业务逻辑的规范
 
 
 ### Zuul网关
@@ -65,8 +106,10 @@ feign（服务消费者）+SpringMVC（服务调用者）实现共同的服务�
 
 ---
 
+# 开发记录
 
 ## SpringCloud
+
 ### 版本对应关系
 SpringCloud的大版本名称为伦敦地铁站名，按字母A-Z顺序
 SpringCloud大版本与SpringBoot版本的对应关系
@@ -97,8 +140,8 @@ xxxx-spring-boot-starter
 eureka中默认配置，轮询更新服务列表的时间为30s
 通过修改`registryFetchIntervalSeconds`配置来提高服务注册的感知速度
 
+## 部署
 
-## 容器化
 ### 调试容器方式 exec -it
 
 ### dockerfile中RUN/ENTRYPOINT/CMD的区别与实践
@@ -112,6 +155,7 @@ ENTRYPOINT配置容器启动时的执行命令，通常用来启动应用程序
 可以是一个shell脚本（方便在执行前添加其他逻辑）
 也可以在sh脚本中通过$0、$1获取cmd外部输入的命令
 下列为redis进行的docker-entrypoint.sh
+
 ```bash
 # first arg is `-f` or `--some-option`
 # or first arg is `something.conf`
