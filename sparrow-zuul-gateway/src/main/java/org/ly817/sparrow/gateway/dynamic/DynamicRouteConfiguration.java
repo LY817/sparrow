@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 /**
  * @author LY
@@ -17,7 +18,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DynamicRouteConfiguration {
 
-
     @Autowired
     private ZuulProperties zuulProperties;
 
@@ -25,13 +25,13 @@ public class DynamicRouteConfiguration {
     private ServerProperties server;
 
     @Autowired
-    private IAdminService fAdminService;
+    private IAdminService adminService;
 
     @Bean
     public DynamicRouteLocator routeLocator() {
         DynamicRouteLocator routeLocator = new DynamicRouteLocator(
                 this.server.getServlet().getContextPath(), this.zuulProperties);
-        routeLocator.setfAdminService(fAdminService);
+        routeLocator.setAdminService(adminService);
         return routeLocator;
     }
 }

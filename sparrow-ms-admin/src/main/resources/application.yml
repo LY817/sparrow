@@ -16,7 +16,18 @@ spring:
   redis:
     host: "localhost"
 ##    url: "192.168.3.17"
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://${cmd.mysql.ip}:3306/sparrow?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
+mybatis:
+  mapper-locations: classpath:mapper/*Dao.xml
+  type-aliases-package: org.ly817.sparrow.api.pojo
+  configuration:
+    map-underscore-to-camel-case: true
 
 #debug: true
 

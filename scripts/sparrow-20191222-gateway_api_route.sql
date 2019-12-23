@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2019-12-22 22:04:56
+Date: 2019-12-23 20:52:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,5 +29,6 @@ CREATE TABLE `gateway_api_route` (
   `strip_prefix` int(11) DEFAULT NULL,
   `api_name` varchar(255) DEFAULT NULL,
   `sts_time` datetime DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

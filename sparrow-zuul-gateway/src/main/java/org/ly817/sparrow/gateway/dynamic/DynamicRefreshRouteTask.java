@@ -31,7 +31,7 @@ public class DynamicRefreshRouteTask {
     @Autowired
     private RouteLocator routeLocator;
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 1000000)
     private void refreshRoute() {
         RoutesRefreshedEvent routesRefreshedEvent = new RoutesRefreshedEvent(routeLocator);
         publisher.publishEvent(routesRefreshedEvent);

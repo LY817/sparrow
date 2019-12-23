@@ -4,6 +4,7 @@ package org.ly817.sparrow.gateway;
 import org.ly817.sparrow.api.service.IAdminService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
