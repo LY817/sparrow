@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ly817.sparrow.admin.dao.GatewayApiRouteDao">
+  <resultMap id="BaseResultMap" type="org.ly817.sparrow.api.pojo.GatewayApiRoute">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="service_id" jdbcType="BIGINT" property="serviceId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="retryable" jdbcType="BOOLEAN" property="retryable" />
+    <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
+    <result column="strip_prefix" jdbcType="INTEGER" property="stripPrefix" />
+    <result column="api_name" jdbcType="VARCHAR" property="apiName" />
+    <result column="sts_time" jdbcType="TIMESTAMP" property="stsTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, service_name, service_id, url, retryable, enabled, strip_prefix, api_name, sts_time
+  </sql>
+  <select id="selectByExample" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRouteExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gateway_api_route
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gateway_api_route
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from gateway_api_route
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRouteExample">
+    delete from gateway_api_route
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRoute" useGeneratedKeys="true">
+    insert into gateway_api_route (service_name, service_id, url, 
+      retryable, enabled, strip_prefix, 
+      api_name, sts_time)
+    values (#{serviceName,jdbcType=VARCHAR}, #{serviceId,jdbcType=BIGINT}, #{url,jdbcType=VARCHAR}, 
+      #{retryable,jdbcType=BOOLEAN}, #{enabled,jdbcType=BOOLEAN}, #{stripPrefix,jdbcType=INTEGER}, 
+      #{apiName,jdbcType=VARCHAR}, #{stsTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRoute" useGeneratedKeys="true">
+    insert into gateway_api_route
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="serviceId != null">
+        service_id,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="retryable != null">
+        retryable,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="stripPrefix != null">
+        strip_prefix,
+      </if>
+      <if test="apiName != null">
+        api_name,
+      </if>
+      <if test="stsTime != null">
+        sts_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="retryable != null">
+        #{retryable,jdbcType=BOOLEAN},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BOOLEAN},
+      </if>
+      <if test="stripPrefix != null">
+        #{stripPrefix,jdbcType=INTEGER},
+      </if>
+      <if test="apiName != null">
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="stsTime != null">
+        #{stsTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRouteExample" resultType="java.lang.Long">
+    select count(*) from gateway_api_route
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gateway_api_route
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.serviceName != null">
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceId != null">
+        service_id = #{record.serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.retryable != null">
+        retryable = #{record.retryable,jdbcType=BOOLEAN},
+      </if>
+      <if test="record.enabled != null">
+        enabled = #{record.enabled,jdbcType=BOOLEAN},
+      </if>
+      <if test="record.stripPrefix != null">
+        strip_prefix = #{record.stripPrefix,jdbcType=INTEGER},
+      </if>
+      <if test="record.apiName != null">
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stsTime != null">
+        sts_time = #{record.stsTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gateway_api_route
+    set id = #{record.id,jdbcType=BIGINT},
+      service_name = #{record.serviceName,jdbcType=VARCHAR},
+      service_id = #{record.serviceId,jdbcType=BIGINT},
+      url = #{record.url,jdbcType=VARCHAR},
+      retryable = #{record.retryable,jdbcType=BOOLEAN},
+      enabled = #{record.enabled,jdbcType=BOOLEAN},
+      strip_prefix = #{record.stripPrefix,jdbcType=INTEGER},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      sts_time = #{record.stsTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRoute">
+    update gateway_api_route
+    <set>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        service_id = #{serviceId,jdbcType=BIGINT},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="retryable != null">
+        retryable = #{retryable,jdbcType=BOOLEAN},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BOOLEAN},
+      </if>
+      <if test="stripPrefix != null">
+        strip_prefix = #{stripPrefix,jdbcType=INTEGER},
+      </if>
+      <if test="apiName != null">
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="stsTime != null">
+        sts_time = #{stsTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRoute">
+    update gateway_api_route
+    set service_name = #{serviceName,jdbcType=VARCHAR},
+      service_id = #{serviceId,jdbcType=BIGINT},
+      url = #{url,jdbcType=VARCHAR},
+      retryable = #{retryable,jdbcType=BOOLEAN},
+      enabled = #{enabled,jdbcType=BOOLEAN},
+      strip_prefix = #{stripPrefix,jdbcType=INTEGER},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      sts_time = #{stsTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

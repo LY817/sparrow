@@ -1,10 +1,9 @@
 package org.ly817.sparrow.gateway;
 
 
-import org.ly817.sparrow.api.service.IAdminService;
+import org.ly817.sparrow.api.service.IUserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClients;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
@@ -19,11 +18,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableZuulProxy
 @RibbonClients({
-        @RibbonClient("name=sparrow-ms-admin")
+        @RibbonClient("name=sparrow-ms-user")
 })
 @EnableFeignClients(
         basePackageClasses = {
-                IAdminService.class
+                IUserService.class
         }
 )
 public class SparrowZuulBootstrap {

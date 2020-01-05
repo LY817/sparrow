@@ -15,23 +15,22 @@ import org.springframework.context.annotation.DependsOn;
  * Description:
  * 自定义路由策略
  */
-@Configuration
+//@Configuration
 public class DynamicRouteConfiguration {
 
-    @Autowired
-    private ZuulProperties zuulProperties;
-
-    @Autowired
-    private ServerProperties server;
-
-    @Autowired
-    private IAdminService adminService;
-
-    @Bean
-    public DynamicRouteLocator routeLocator() {
-        DynamicRouteLocator routeLocator = new DynamicRouteLocator(
-                this.server.getServlet().getContextPath(), this.zuulProperties);
-        routeLocator.setAdminService(adminService);
-        return routeLocator;
-    }
+//    @Autowired
+//    private ZuulProperties zuulProperties;
+//
+//    @Autowired
+//    private ServerProperties server;
+//
+//    @Autowired
+//    private IZuulRouteService zuulRouteService;
+//
+//    @Bean
+//    public AbstractDynamicRouteLocator routeLocator() {
+//        AbstractDynamicRouteLocator routeLocator = new DynamicRouteLocator(
+//                this.server.getServlet().getContextPath(), this.zuulProperties);
+//        return routeLocator;
+//    }
 }

@@ -33,8 +33,8 @@ public class DocumentationConfig implements SwaggerResourcesProvider {
         List<SwaggerResource> resources = new ArrayList<>();
         List<Route> routes = routeLocator.getRoutes();
         routes.forEach(route -> {
-            System.out.println();
-            resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "api-docs"), "1.0"));
+            // 坑点 自带的swagger2-ui api就会加上v2
+            resources.add(swaggerResource(route.getId(), route.getFullPath().replace("**", "v2/api-docs"), "1.0"));
         });
         return resources;
     }

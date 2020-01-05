@@ -6,10 +6,10 @@ eureka:
 # zuul路由配置
 zuul:
   routes:
-#    sparrow-ms-inventory: /api/**
-#    sparrow-ms-order: /api/**
-    sparrow-ms-user: /api/sparrow-ms-user/**
-    sparrow-ms-admin: /api/sparrow-ms-admin/**
+    sparrow-ms-product: /product/**
+    sparrow-ms-order: /order/**
+    sparrow-ms-user: /user/**
+    sparrow-ms-admin: /admin/**
 #spring:
 #  cloud:
 #    config:

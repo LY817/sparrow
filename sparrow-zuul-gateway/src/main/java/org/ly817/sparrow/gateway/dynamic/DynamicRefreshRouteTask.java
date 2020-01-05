@@ -15,10 +15,12 @@ import org.springframework.stereotype.Component;
  * <p>
  * Description:
  * 定时通知zuul更新路由地址
+ * zuul自己会30s刷新一次路由信息
  */
-@Component
-@Configuration
-@EnableScheduling
+//@Component
+//@Configuration
+//@EnableScheduling
+@Deprecated
 public class DynamicRefreshRouteTask {
 
     /**
