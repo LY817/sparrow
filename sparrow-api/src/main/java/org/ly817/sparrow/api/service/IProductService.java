@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by LuoYu on 2019/10/11.
- * å•†å“æœåŠ¡
+ * ÉÌÆ··şÎñ
  */
 @FeignClient(value = "sparrow-ms-product")
 public interface IProductService {
     /**
-     * æ–°å¢å•†å“
+     * ĞÂÔöÉÌÆ·
      *
-     * todo RESTé£æ ¼çš„æ¥å£è®¾è®¡
-     * - uri å®šä½èµ„æº
-     * - è®¿é—®æ–¹æ³• å¯¹èµ„æºçš„æ“ä½œ
+     * todo REST·ç¸ñµÄ½Ó¿ÚÉè¼Æ
+     * - uri ¶¨Î»×ÊÔ´
+     * - ·ÃÎÊ·½·¨ ¶Ô×ÊÔ´µÄ²Ù×÷
      *
      *
      */
@@ -25,14 +25,14 @@ public interface IProductService {
     Product addProduct(@RequestBody Product product);
 
     /**
-     * æ ¹æ®å•†å“idæŸ¥è¯¢å•†å“
+     * ¸ù¾İÉÌÆ·id²éÑ¯ÉÌÆ·
      * @param productId
      */
     @GetMapping("/products/{productId}")
     Product getProduct(@PathVariable("productId") Long productId);
 
     /**
-     * æ£€æŸ¥åº“å­˜
+     * ¼ì²é¿â´æ
      */
     @Deprecated
     @GetMapping("/products/{productId}/inventory/{checkNumber}")
@@ -40,8 +40,8 @@ public interface IProductService {
                                   @PathVariable("checkNumber") Integer checkNumber);
 
     /**
-     * å¢åŠ å•†å“åº“å­˜
-     * ä¹è§‚é”å®ç°
+     * Ôö¼ÓÉÌÆ·¿â´æ
+     * ÀÖ¹ÛËøÊµÏÖ
      */
     @PatchMapping("/products/{productId}/inventory/{number}")
     void updateProductInventory(@PathVariable("productId") Long productId,

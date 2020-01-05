@@ -1,5 +1,6 @@
 package org.ly817.sparrow.api.service;
 
+import io.swagger.annotations.ApiOperation;
 import org.ly817.sparrow.api.dto.AuthDTO;
 import org.ly817.sparrow.api.pojo.GatewayApiRoute;
 import org.ly817.sparrow.api.pojo.User;
@@ -15,36 +16,41 @@ import java.util.List;
 @FeignClient("sparrow-ms-admin")
 public interface IAdminService {
 
-    //===========ç”¨æˆ·èº«ä»½ç®¡ç†=============
-
+    //===========ÓÃ»§Éí·İ¹ÜÀí=============
+    @ApiOperation(value="ÓÃ»§µÇÂ¼", notes="ÓÃ»§µÇÂ¼»ñÈ¡µÇÂ¼token",produces = "application/json")
     @PostMapping("/admin/login")
     AuthDTO login(@RequestParam("userName") String userName,@RequestParam("password") String password);
 
+    @ApiOperation(value="Ë¢ĞÂtoken", notes="Ë¢ĞÂtoken",produces = "application/json")
     @PostMapping("/admin/refresh")
     AuthDTO refreshToken(@RequestParam("userName") String userName,@RequestParam("refreshToken") String refreshToken);
 
+    @ApiOperation(value="tokenÉí·İÑéÖ¤", notes="tokenÉí·İÑéÖ¤",produces = "application/json")
     @PostMapping("/admin/auth")
     User auth(@RequestParam("userName") String userName,@RequestParam("token") String token);
 
 //    @GetMapping("/{userName}")
 //    User findUserByUserName(@PathVariable("userName") String userName);
 
-    //=============åŠ¨æ€ç½‘å…³æ˜ å°„ç®¡ç†==============
+    //=============¶¯Ì¬Íø¹ØÓ³Éä¹ÜÀí==============
     /**
-     * æŸ¥è¯¢å½“å‰æœåŠ¡æ˜ å°„å…³ç³»
+     * ²éÑ¯µ±Ç°·şÎñÓ³Éä¹ØÏµ
      */
+    @ApiOperation(value="²éÑ¯µ±Ç°·şÎñÓ³Éä¹ØÏµ", notes="²éÑ¯µ±Ç°·şÎñÓ³Éä¹ØÏµ",produces = "application/json")
     @GetMapping("/admin/routes")
     List<GatewayApiRoute> getGatewayApiRoutes();
 
     /**
-     * æ–°å¢è·¯ç”±æ˜ å°„
+     * ĞÂÔöÂ·ÓÉÓ³Éä
      */
+    @ApiOperation(value="ĞÂÔöÂ·ÓÉÓ³Éä", notes="ĞÂÔöÂ·ÓÉÓ³Éä",produces = "application/json")
     @PutMapping("/admin/routes")
     GatewayApiRoute addGatewayApiRoute(@RequestBody GatewayApiRoute gatewayApiRoute);
 
     /**
-     * ä¿®æ”¹è·¯ç”±æ˜ å°„
+     * ĞŞ¸ÄÂ·ÓÉÓ³Éä
      */
+    @ApiOperation(value="ĞŞ¸ÄÂ·ÓÉÓ³Éä", notes="ĞŞ¸ÄÂ·ÓÉÓ³Éä",produces = "application/json")
     @PostMapping("/admin/routes")
     GatewayApiRoute updateGatewayApiRoute(@RequestBody GatewayApiRoute gatewayApiRoute);
 

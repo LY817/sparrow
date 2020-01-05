@@ -35,9 +35,11 @@
         <module>sparrow-ms-coupon</module>
         <module>sparrow-ws-push</module>
     </modules>
+
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <swagger2.version>2.9.2</swagger2.version>
         <!--<spring-cloud-starter-netflix-zuul.version>2.0.0.RELEASE</spring-cloud-starter-netflix-zuul.version>-->
     </properties>
 

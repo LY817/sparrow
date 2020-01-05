@@ -58,7 +58,7 @@ public class GlobalExceptionHandler {
         result.setCode(e.getCode());
         String message = e.getMessage();
         result.setMsg(message);
-        logger.error("Known response", e.getMessage(), e);
+        logger.error("unknown response", e.getMessage(), e);
         return result;
     }
 }

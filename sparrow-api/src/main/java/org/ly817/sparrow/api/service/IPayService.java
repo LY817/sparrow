@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by LuoYu on 2019/8/14.
- * æ”¯ä»˜æ¥å£
+ * Ö§¸¶½Ó¿Ú
  */
 @FeignClient(value = "sparrow-ms-pay")
 public interface IPayService {
 
     /**
-     * ç¡®è®¤æ”¶æ¬¾
+     * È·ÈÏÊÕ¿î
      *
-     * @param payToken ä»˜æ¬¾å‡­è¯
-     * @param amount ä»˜æ¬¾é‡‘é¢
+     * @param payToken ¸¶¿îÆ¾Ö¤
+     * @param amount ¸¶¿î½ğ¶î
      *
-     * @return æµæ°´å·
+     * @return Á÷Ë®ºÅ
      */
     @PostMapping("/pay/payCheck")
     String payCheck(@RequestBody String payToken,@RequestBody Double amount);
 
 
     /**
-     * ç¬¬ä¸‰æ–¹æ”¯ä»˜å›è°ƒ
+     * µÚÈı·½Ö§¸¶»Øµ÷
      */
     @PostMapping("/pay/payCallback")
     String payCallback();

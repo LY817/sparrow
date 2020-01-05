@@ -1,5 +1,7 @@
 package org.ly817.sparrow.api.service;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.ly817.sparrow.api.exception.APIException;
 
 import org.ly817.sparrow.api.pojo.User;
@@ -11,43 +13,48 @@ import org.springframework.web.bind.annotation.*;
  * @date 2019/06/09 14:37
  * <p>
  * Description:
- * ç”¨æˆ·æœåŠ¡æ¥å£
+ * ÓÃ»§·şÎñ½Ó¿Ú
  */
-//@RequestMapping("/users")
+@Api("ÓÃ»§·şÎñ")
 @FeignClient("sparrow-ms-user")
 public interface IUserService {
 
     /**
-     * æ–°å¢ç”¨æˆ·
+     * ĞÂÔöÓÃ»§
      * @param user
      */
+    @ApiOperation(value="»ñÈ¡ÓÃ»§ÁĞ±í", notes="»ñÈ¡ËùÓĞÓÃ»§ÁĞ±í",produces = "application/json")
     @PostMapping("/users")
     User addUser(@RequestBody User user);
 
     /**
-     * æ›´æ–°ç”¨æˆ·
+     * ¸üĞÂÓÃ»§
      * @param user
      */
+    @ApiOperation(value="¸üĞÂÓÃ»§", notes="¸üĞÂÓÃ»§",produces = "application/json")
     @PatchMapping("/users")
     User updateUser(@RequestBody User user);
 
     /**
-     * æ ¹æ®ç”¨æˆ·idæŸ¥è¯¢ç”¨æˆ·å±æ€§
-     * @param userId ç”¨æˆ·ä¸»é”®id @PathVariableæ³¨è§£å¿…é¡»åœ¨å®ç°ç±»ä¸­
+     * ¸ù¾İÓÃ»§id²éÑ¯ÓÃ»§ÊôĞÔ
+     * @param userId ÓÃ»§Ö÷¼üid @PathVariable×¢½â±ØĞëÔÚÊµÏÖÀàÖĞ
      * @return User
      */
+    @ApiOperation(value="¸ù¾İÓÃ»§id²éÑ¯ÓÃ»§ÊôĞÔ", notes="¸ù¾İÓÃ»§id²éÑ¯ÓÃ»§ÊôĞÔ",produces = "application/json")
     @GetMapping("/users/{userId}")
     User findUserById(@PathVariable("userId") Long userId);
 
+    @ApiOperation(value="¸ù¾İÓÃ»§Ãû²éÑ¯ÓÃ»§ÊôĞÔ", notes="¸ù¾İÓÃ»§Ãû²éÑ¯ÓÃ»§ÊôĞÔ",produces = "application/json")
     @GetMapping("/users/{userName}")
     User findUserByName(@PathVariable("userName") String userName);
 
     /**
-     * æ ¹æ®ç”¨æˆ·åå’Œå¯†ç æŸ¥æ‰¾è®°å½•
-     * @param userName ç”¨æˆ·å
-     * @param pwd å¯†ç 
+     * ¸ù¾İÓÃ»§ÃûºÍÃÜÂë²éÕÒ¼ÇÂ¼
+     * @param userName ÓÃ»§Ãû
+     * @param pwd ÃÜÂë
      * @return
      */
+    @ApiOperation(value="¸ù¾İÓÃ»§ÃûºÍÃÜÂë²éÕÒ¼ÇÂ¼", notes="¸ù¾İÓÃ»§ÃûºÍÃÜÂë²éÕÒ¼ÇÂ¼",produces = "application/json")
     @GetMapping("/users/{userName}/{pwd}")
     User findUserByUserNameAndPwd(@PathVariable("userName") String userName,
                                   @PathVariable("pwd") String pwd);

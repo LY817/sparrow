@@ -4,13 +4,20 @@ cmd:
   mysql:
     ip: "localhost"
 
+# 微服务负责人联系方式
+swagger:
+  contact:
+    name: "User Coder"
+    url: "http://github.com"
+    email: "123@126.com"
+
 
 server:
   port: 10000
 management:
-  endpoints:
-    web:
-      base-path: /
+  endpoint:
+    health:
+      show-details: always
 spring:
   application:
     name: sparrow-ms-user

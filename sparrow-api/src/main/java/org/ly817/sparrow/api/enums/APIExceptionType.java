@@ -6,6 +6,7 @@ package org.ly817.sparrow.api.enums;
  * <p>
  * Description:
  * 异常类型
+ * 需要使用GBK编码
  * todo 为什么使用utf-8编码会导致输出乱码 其他文件用utf-8输出中文正常
  */
 public enum APIExceptionType {

@@ -14,6 +14,7 @@
         全局配置
         1. 异常全局处理
         2. 全局唯一主键
+        3. 全局swagger api文档配置
     </description>
 
     <dependencies>
@@ -43,6 +44,23 @@
             <version>2.0.2.RELEASE</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- swagger2 依赖 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

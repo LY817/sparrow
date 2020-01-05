@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2019/11/10 18:59
  * <p>
  * Description:
- * 浜ゆ槗鏃ュ織璁板綍鏈嶅姟
+ * 交易日志记录服务
  */
 @FeignClient(value = "sparrow-ms-trade-log")
 public interface ITradeLogService {

@@ -51,29 +51,29 @@ public class DynamicRouteLocator extends SimpleRouteLocator implements Refreshab
      * 重写地址路由逻辑
      * doRefresh方法调用locateRoutes
      */
-    @Override
-    protected Map<String, ZuulProperties.ZuulRoute> locateRoutes() {
-        // super.locateRoutes() 加载application.yml中zuul.routes.xxx配置
-        LinkedHashMap<String, ZuulProperties.ZuulRoute> routesMap = loadDynamicRoutes();
-
-        // 统一处理路由path的格式 必须以“/”开头
-        LinkedHashMap<String, ZuulProperties.ZuulRoute> values = new LinkedHashMap<>();
-        for (Map.Entry<String, ZuulProperties.ZuulRoute> entry : routesMap.entrySet()) {
-            String path = entry.getKey();
-            if (!path.startsWith("/")) {
-                path = "/" + path;
-            }
-            if (StringUtils.hasText(this.properties.getPrefix())) {
-                path = this.properties.getPrefix() + path;
-                if (!path.startsWith("/")) {
-                    path = "/" + path;
-                }
-            }
-            values.put(path, entry.getValue());
-        }
-
-        return values;
-    }
+//    @Override
+//    protected Map<String, ZuulProperties.ZuulRoute> locateRoutes() {
+//        // super.locateRoutes() 加载application.yml中zuul.routes.xxx配置
+//        LinkedHashMap<String, ZuulProperties.ZuulRoute> routesMap = loadDynamicRoutes();
+//
+//        // 统一处理路由path的格式 必须以“/”开头
+//        LinkedHashMap<String, ZuulProperties.ZuulRoute> values = new LinkedHashMap<>();
+//        for (Map.Entry<String, ZuulProperties.ZuulRoute> entry : routesMap.entrySet()) {
+//            String path = entry.getKey();
+//            if (!path.startsWith("/")) {
+//                path = "/" + path;
+//            }
+//            if (StringUtils.hasText(this.properties.getPrefix())) {
+//                path = this.properties.getPrefix() + path;
+//                if (!path.startsWith("/")) {
+//                    path = "/" + path;
+//                }
+//            }
+//            values.put(path, entry.getValue());
+//        }
+//
+//        return values;
+//    }
 
     /**
      * 加载外部数据库中的数据为Zuul网关的路由数据

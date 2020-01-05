@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface ICreditService {
 
     /**
-     * æ·»åŠ ç§¯åˆ†
+     * Ìí¼Ó»ý·Ö
      */
     @PostMapping("credit/add/{score}")
     void addCreditScore(@PathVariable("userId") Long userId,@PathVariable("score") int score);

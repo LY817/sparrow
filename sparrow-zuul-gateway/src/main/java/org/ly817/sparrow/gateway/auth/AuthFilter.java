@@ -61,6 +61,10 @@ public class AuthFilter extends ZuulFilter {
         if (uri.endsWith("login")) {
             return false;
         }
+
+        if (uri.endsWith("api-docs")) {
+             return false;
+        }
         return true;
     }
 

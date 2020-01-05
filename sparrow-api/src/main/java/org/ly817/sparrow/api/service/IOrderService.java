@@ -17,34 +17,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface IOrderService {
 
     /**
-     * 提交订单
-     * 订单提交和支付流程是异步进行的
+     * �ύ����
+     * �����ύ��֧���������첽���е�
      *
      *
-     * - 校验订单
-     *   - 校验库存是否足够
-     *   - 校验购物券是否存在
-     *   - 校验金额:验证前端计算的金额
-     * - 生成预订单
-     *   - 减库存
-     *   - 作废购物券
-     *   - 生成记录订单表
-     *   - todo *通知商户
+     * - У�鶩��
+     *   - У�����Ƿ��㹻
+     *   - У�鹺��ȯ�Ƿ����
+     *   - У����:��֤ǰ�˼���Ľ��
+     * - ����Ԥ����
+     *   - �����
+     *   - ���Ϲ���ȯ
+     *   - ���ɼ�¼������
+     *   - todo *֪ͨ�̻�
      *
      *
      *
-     * - 调用付款接口
-     *   - 调用成功
-     *     - 修改订单状态
-     *     - 加积分
-     *     - 物流
-     *     - 通知客户端
-     *   - 调用失败
-     *     - 回滚库存、购物券
+     * - ���ø���ӿ�
+     *   - ���óɹ�
+     *     - �޸Ķ���״̬
+     *     - �ӻ���
+     *     - ����
+     *     - ֪ͨ�ͻ���
+     *   - ����ʧ��
+     *     - �ع���桢����ȯ
      *
-     * 不可预期异常
-     * - 服务调用超时导致的数据不一致
-     * - 重试与接口的幂等性
+     * ����Ԥ���쳣
+     * - ������ó�ʱ���µ����ݲ�һ��
+     * - ������ӿڵ��ݵ���
      *
      * @param order
      */
@@ -52,8 +52,8 @@ public interface IOrderService {
     Order addPreOrder(@RequestBody Order order);
 
     /**
-     * 确认订单
-     * 支付成功 将预订单状态的订单进行更新为已支付 并开启后续履约流程
+     * ȷ�϶���
+     * ֧���ɹ� ��Ԥ����״̬�Ķ������и���Ϊ��֧�� ������������Լ����
      *
      * @param order
      */
@@ -61,10 +61,10 @@ public interface IOrderService {
     Order confirmPreOrder(@RequestBody Order order);
 
     /**
-     * 取消订单
+     * ȡ������
      *
-     * 下单与支付分开
-     * 会在下单之后开启一个倒计时，需要在倒计时结束之前完成支付操作，否则订单会被取消
+     * �µ���֧���ֿ�
+     * �����µ�֮����һ������ʱ����Ҫ�ڵ���ʱ����֮ǰ���֧�����������򶩵��ᱻȡ��
      * @param order
      */
     @PatchMapping("orders/rollback")

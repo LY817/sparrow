@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.*;
 public interface ICouponService {
 
     /**
-     * 鏂板
+     * 新增
      */
     @PostMapping("/coupons")
     Coupon addCoupon(Coupon coupon);
 
     /**
-     * 淇敼
+     * 修改
      */
     @PatchMapping("/coupons")
     Coupon updateCoupon(Coupon coupon);
 
     /**
-     * 鏌ヨ
+     * 查询
      */
     @GetMapping("/coupons/{couponId}")
     Coupon getCouponById(@PathVariable("couponId") Long couponId);

@@ -4,12 +4,26 @@ cmd:
   mysql:
     ip: "localhost"
 
+# 微服务负责人联系方式
+swagger:
+  contact:
+    name: "Admin Coder"
+    url: "http://github.com"
+    email: "123@126.com"
+
 server:
   port: 9000
 management:
+  server:
+    port: 9000
   endpoints:
     web:
-      base-path: /
+      exposure:
+        include: "refresh,health,info"
+  endpoint:
+    health:
+      show-details: always
+
 spring:
   application:
     name: sparrow-ms-admin
