@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.ly817.sparrow.admin.dao.GatewayApiRouteDao">
+<mapper namespace="org.ly817.sparrow.gateway.dao.GatewayApiRouteDao">
   <resultMap id="BaseResultMap" type="org.ly817.sparrow.api.pojo.GatewayApiRoute">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="service_name" jdbcType="VARCHAR" property="serviceName" />

@@ -6,6 +6,7 @@ import com.netflix.zuul.exception.ZuulException;
 import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.exception.APIException;
 import org.ly817.sparrow.api.service.IAdminService;
+import org.ly817.sparrow.gateway.admin.AdminServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AuthFilter extends ZuulFilter {
     private final Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 
     @Autowired
-    private IAdminService fAdminService;
+    private AdminServiceImpl adminService;
 
     /**
      * 过滤器添加的时机
@@ -83,7 +84,7 @@ public class AuthFilter extends ZuulFilter {
             if (authKeys.length == 2) {
                 userName = authKeys[0];
                 String token = authKeys[1];
-                fAdminService.auth(userName, token);
+                adminService.auth(userName, token);
             } else {
                 throw new APIException("500", "authKey格式不符合要求");
             }

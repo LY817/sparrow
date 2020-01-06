@@ -3,9 +3,6 @@ package org.ly817.sparrow.gateway.dynamic;
 import org.ly817.sparrow.api.pojo.GatewayApiRoute;
 import org.ly817.sparrow.api.pojo.GatewayApiRouteExample;
 import org.ly817.sparrow.gateway.dao.GatewayApiRouteDao;
-import org.ly817.sparrow.gateway.dynamic.IZuulRouteService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -40,13 +37,16 @@ public class ZuulRouteServiceDBImpl implements IZuulRouteService {
     }
 
     @Override
-    public List<GatewayApiRoute> list(GatewayApiRouteExample condition) {
+    public List<GatewayApiRoute> list(GatewayApiRouteExample example) {
         return null;
     }
 
     @Override
     public List<GatewayApiRoute> listAll() {
-        return null;
+        GatewayApiRouteExample example = new GatewayApiRouteExample();
+        GatewayApiRouteExample.Criteria criteria = example.createCriteria();
+        example.or(criteria);
+        return gatewayApiRouteDao.selectByExample(example);
     }
 
     @Override

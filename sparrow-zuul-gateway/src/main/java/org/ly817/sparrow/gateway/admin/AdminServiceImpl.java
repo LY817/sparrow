@@ -8,6 +8,7 @@ import org.ly817.sparrow.api.pojo.GatewayApiRouteExample;
 import org.ly817.sparrow.api.pojo.User;
 import org.ly817.sparrow.api.service.IAdminService;
 import org.ly817.sparrow.api.service.IUserService;
+import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.gateway.dao.GatewayApiRouteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -26,6 +27,9 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 public class AdminServiceImpl implements IAdminService {
+
+    @Autowired
+    private SnowflakeIdWorker idWorker;
 
     @Autowired
     RedisTemplate redisTemplate;
@@ -95,7 +99,9 @@ public class AdminServiceImpl implements IAdminService {
      */
     @Override
     public GatewayApiRoute addGatewayApiRoute(GatewayApiRoute gatewayApiRoute) {
-        return null;
+        gatewayApiRoute.setId(idWorker.nextId());
+        gatewayApiRouteDao.insert(gatewayApiRoute);
+        return gatewayApiRoute;
     }
 
     /**
@@ -105,6 +111,7 @@ public class AdminServiceImpl implements IAdminService {
      */
     @Override
     public GatewayApiRoute updateGatewayApiRoute(GatewayApiRoute gatewayApiRoute) {
-        return null;
+        gatewayApiRouteDao.updateByPrimaryKey(gatewayApiRoute);
+        return gatewayApiRoute;
     }
 }

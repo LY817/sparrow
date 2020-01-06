@@ -1,3 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.ly817.sparrow.gateway.admin.mysql.ZuulRouteDBConfiguration
