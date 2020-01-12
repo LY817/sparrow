@@ -8,7 +8,7 @@ zuul:
   routes:
     sparrow-ms-product: /product/**
     sparrow-ms-order: /order/**
-    sparrow-ms-user: /user/**
+#    sparrow-ms-user: /user/**
 #spring:
 #  cloud:
 #    config:

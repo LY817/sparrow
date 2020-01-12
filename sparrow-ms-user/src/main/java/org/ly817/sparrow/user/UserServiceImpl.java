@@ -7,12 +7,19 @@ import org.ly817.sparrow.api.pojo.User;
 import org.ly817.sparrow.api.pojo.UserExample;
 import org.ly817.sparrow.api.service.IUserService;
 import org.ly817.sparrow.common.SnowflakeIdWorker;
+import org.ly817.sparrow.global.auth.CheckLogin;
 import org.ly817.sparrow.user.dao.UserDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +33,8 @@ import java.util.List;
 @RestController
 public class UserServiceImpl implements IUserService {
 
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private SnowflakeIdWorker idWorker;
 
@@ -38,9 +47,16 @@ public class UserServiceImpl implements IUserService {
      * @param user
      */
     @Override
+    @CheckLogin
     public User addUser(@RequestBody User user) {
         if (user == null) {
             throw new APIException(APIExceptionType.USER_ADD_PARAM_INVALID);
+        }
+        ServletRequestAttributes requestAttributes =
+                (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (!ObjectUtils.isEmpty(requestAttributes)) {
+            HttpServletRequest request = requestAttributes.getRequest();
+            logger.error(request.getAttribute("userId") + "");
         }
         user.setUserId(idWorker.nextId());
         user.setRegTime(new Date());

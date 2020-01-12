@@ -37,9 +37,11 @@ public class DBDynamicRouteLocator extends AbstractDynamicRouteLocator {
         LinkedHashMap<String, ZuulProperties.ZuulRoute> routes = new LinkedHashMap<>();
         List<GatewayApiRoute> results = zuulRouteService.listAll();
         for (GatewayApiRoute result : results) {
+            // 映射的
             if (StringUtils.isEmpty(result.getPath()) ) {
                 continue;
             }
+            // serviceId和url不能同时为空
             if (StringUtils.isEmpty(result.getServiceId())
                     && StringUtils.isEmpty(result.getUrl())) {
                 continue;
@@ -47,6 +49,12 @@ public class DBDynamicRouteLocator extends AbstractDynamicRouteLocator {
             ZuulProperties.ZuulRoute zuulRoute = new ZuulProperties.ZuulRoute();
             try {
                 BeanUtils.copyProperties(result, zuulRoute);
+                String[] pathInfo = zuulRoute.getPath().split("/");
+                if (zuulRoute.getPath().startsWith("/")) {
+                    zuulRoute.setId(pathInfo[1]);
+                } else {
+                    zuulRoute.setId(pathInfo[0]);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

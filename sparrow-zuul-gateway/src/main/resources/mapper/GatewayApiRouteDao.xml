@@ -11,6 +11,7 @@
     <result column="strip_prefix" jdbcType="INTEGER" property="stripPrefix" />
     <result column="api_name" jdbcType="VARCHAR" property="apiName" />
     <result column="sts_time" jdbcType="TIMESTAMP" property="stsTime" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, service_name, service_id, url, retryable, enabled, strip_prefix, api_name, sts_time
+    id, service_name, service_id, url, retryable, enabled, strip_prefix, api_name, sts_time,path
   </sql>
   <select id="selectByExample" parameterType="org.ly817.sparrow.api.pojo.GatewayApiRouteExample" resultMap="BaseResultMap">
     select

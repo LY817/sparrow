@@ -99,7 +99,7 @@
             <version>${swagger2.version}</version>
         </dependency>
 
-        <!--身份验证相关依赖 jwt auth2-->
+        <!--身份验证相关依赖 auth auth2-->
     </dependencies>
 
     <build>

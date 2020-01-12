@@ -21,6 +21,10 @@ public interface IAdminService {
     @PostMapping("/admin/login")
     AuthDTO login(@RequestParam("userName") String userName,@RequestParam("password") String password);
 
+    @ApiOperation(value="微信用户登录", notes="微信用户登录 获取登录token",produces = "application/json")
+    @PostMapping("/admin/mp/login")
+    AuthDTO login(@RequestParam("code") String code);
+
     @ApiOperation(value="刷新token", notes="刷新token",produces = "application/json")
     @PostMapping("/admin/refresh")
     AuthDTO refreshToken(@RequestParam("userName") String userName,@RequestParam("refreshToken") String refreshToken);

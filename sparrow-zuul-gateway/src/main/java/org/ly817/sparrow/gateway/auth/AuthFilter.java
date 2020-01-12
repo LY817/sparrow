@@ -1,5 +1,6 @@
 package org.ly817.sparrow.gateway.auth;
 
+import com.alibaba.fastjson.JSONObject;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +66,7 @@ public class AuthFilter extends ZuulFilter {
         }
 
         if (uri.endsWith("api-docs")) {
-             return false;
+            return false;
         }
         return true;
     }
@@ -77,9 +79,18 @@ public class AuthFilter extends ZuulFilter {
         String token = request.getHeader("token");
         try {
             if (token == null) {
-                throw new APIException("500", "请求中没有身份验证信息");
+                // 不被全局controller异常切面拦截 需要手动操作response
+//                throw new APIException("500", "请求中没有身份验证信息");
+
+                APIResponse result = new APIResponse();
+                result.setCode("304");
+                result.setMsg("请求中没有身份验证信息");
+                ctx.setSendZuulResponse(false);
+                ctx.setResponseBody(JSONObject.toJSONString(result));
+                ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+            } else {
+                adminService.auth(token);
             }
-            adminService.auth(token);
         } catch (APIException e) {
             e.printStackTrace();
             logger.warn("身份验证失败 userName >>> {}", token);

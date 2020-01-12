@@ -17,6 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GatewayApiRoute implements Serializable {
+
+    /**
+     * 数据库主键
+     */
     private Long id;
 
     /**
@@ -28,7 +32,7 @@ public class GatewayApiRoute implements Serializable {
      * 微服务别名 微服务spring.application配置
      * 如sparrow-ms-user
      */
-    private Long serviceId;
+    private String serviceId;
 
     /**
      * 访问路径 The path (pattern) for the route

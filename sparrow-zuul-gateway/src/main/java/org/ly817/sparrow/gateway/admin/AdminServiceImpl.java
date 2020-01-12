@@ -1,7 +1,6 @@
 package org.ly817.sparrow.gateway.admin;
 
 import io.jsonwebtoken.Claims;
-import org.apache.commons.lang.ObjectUtils;
 import org.ly817.sparrow.api.dto.AuthDTO;
 import org.ly817.sparrow.api.enums.APIExceptionType;
 import org.ly817.sparrow.api.exception.APIException;
@@ -12,7 +11,7 @@ import org.ly817.sparrow.api.service.IAdminService;
 import org.ly817.sparrow.api.service.IUserService;
 import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.gateway.dao.GatewayApiRouteDao;
-import org.ly817.sparrow.global.jwt.JwtOperator;
+import org.ly817.sparrow.global.auth.JwtOperator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * @author LY
@@ -49,18 +46,15 @@ public class AdminServiceImpl implements IAdminService {
     private GatewayApiRouteDao gatewayApiRouteDao;
 
 
+    /**
+     * 系统用户名密码登录
+     */
     @Override
     public AuthDTO login(@RequestParam("userName") String userName,
                          @RequestParam("password") String password) {
         User existUser = fUserService.findUserByUserNameAndPwd(userName,password);
         AuthDTO authDTO = new AuthDTO();
         if (existUser != null) {
-//            String authKey = "AUTH_" + existUser.getUserName();
-//            String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
-//            String refreshToken = UUID.randomUUID().toString().replaceAll("-", "");
-//            redisTemplate.opsForHash().put(authKey,accessToken,existUser);
-//            redisTemplate.opsForHash().put(authKey,refreshToken,accessToken);
-//            redisTemplate.expire(authKey,authDTO.getExpireIn(),TimeUnit.SECONDS);
             authDTO.setAuthFlag(true);
             HashMap<String,Object> payload = new HashMap<>();
             payload.put("userId",existUser.getUserId());
@@ -71,6 +65,14 @@ public class AdminServiceImpl implements IAdminService {
             throw new APIException(APIExceptionType.AUTH_FAILED);
         }
         return authDTO;
+    }
+
+    /**
+     * 通过小程序code登录
+     */
+    @Override
+    public AuthDTO login(String code) {
+        return null;
     }
 
     @Override
