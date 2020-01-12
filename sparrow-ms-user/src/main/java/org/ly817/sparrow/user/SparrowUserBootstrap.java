@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,7 +21,8 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 public class SparrowUserBootstrap {
     public static void main(String[] args) {
-        SpringApplication.run(SparrowUserBootstrap.class,args);
+        ConfigurableApplicationContext context = SpringApplication.run(SparrowUserBootstrap.class,args);
+        System.out.println(context);
     }
 
     @Bean

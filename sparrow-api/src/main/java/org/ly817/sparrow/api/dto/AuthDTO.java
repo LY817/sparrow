@@ -18,6 +18,8 @@ public class AuthDTO implements Serializable {
 
     private String refreshToken;
 
+    private String jwt;
+
     private Integer expireIn = 3600;
 
     public Boolean getAuthFlag() {
@@ -50,5 +52,13 @@ public class AuthDTO implements Serializable {
 
     public void setExpireIn(Integer expireIn) {
         this.expireIn = expireIn;
+    }
+
+    public String getJwt() {
+        return jwt;
+    }
+
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
     }
 }

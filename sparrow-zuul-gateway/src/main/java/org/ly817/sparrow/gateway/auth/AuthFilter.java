@@ -74,23 +74,16 @@ public class AuthFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         // 获取header中的用户名和token 调用admin微服务进行校验
-        String authKey = request.getHeader("authKey");
-        String userName = "";
+        String token = request.getHeader("token");
         try {
-            if (authKey == null) {
+            if (token == null) {
                 throw new APIException("500", "请求中没有身份验证信息");
             }
-            String[] authKeys = authKey.split(" ");
-            if (authKeys.length == 2) {
-                userName = authKeys[0];
-                String token = authKeys[1];
-                adminService.auth(userName, token);
-            } else {
-                throw new APIException("500", "authKey格式不符合要求");
-            }
+            adminService.auth(token);
         } catch (APIException e) {
             e.printStackTrace();
-            logger.warn("身份验证失败 userName >>> {}", userName);
+            logger.warn("身份验证失败 userName >>> {}", token);
+            logger.warn("身份验证失败 ip >>> {}", request.getRemoteHost());
             // 拦截该请求，不对该请求进行路由
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(500);

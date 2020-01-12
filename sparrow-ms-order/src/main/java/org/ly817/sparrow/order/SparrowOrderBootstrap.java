@@ -1,6 +1,7 @@
 package org.ly817.sparrow.order;
 
 
+import com.netflix.loadbalancer.RandomRule;
 import org.ly817.sparrow.api.service.ICouponService;
 import org.ly817.sparrow.api.service.IProductService;
 import org.ly817.sparrow.api.service.ITradeLogService;
@@ -25,7 +26,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @RibbonClients({
         @RibbonClient("name=sparrow-ms-product"),
         @RibbonClient("name=sparrow-ms-coupon"),
-        @RibbonClient("name=sparrow-ms-trade-log"),
+        @RibbonClient(value = "name=sparrow-ms-trade-log",configuration = RandomRule.class),
 })
 @EnableFeignClients(
         basePackageClasses = {

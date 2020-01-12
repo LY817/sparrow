@@ -41,11 +41,11 @@ public interface IUserService {
      * @return User
      */
     @ApiOperation(value="根据用户id查询用户属性", notes="根据用户id查询用户属性",produces = "application/json")
-    @GetMapping("/users/{userId}")
+    @GetMapping("/users/id/{userId}")
     User findUserById(@PathVariable("userId") Long userId);
 
     @ApiOperation(value="根据用户名查询用户属性", notes="根据用户名查询用户属性",produces = "application/json")
-    @GetMapping("/users/{userName}")
+    @GetMapping("/users/username/{userName}")
     User findUserByName(@PathVariable("userName") String userName);
 
     /**

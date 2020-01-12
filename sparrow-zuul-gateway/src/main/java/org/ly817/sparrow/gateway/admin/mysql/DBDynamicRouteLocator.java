@@ -33,6 +33,7 @@ public class DBDynamicRouteLocator extends AbstractDynamicRouteLocator {
      */
     @Override
     public LinkedHashMap<String, ZuulProperties.ZuulRoute> loadDynamicRoutes() {
+
         LinkedHashMap<String, ZuulProperties.ZuulRoute> routes = new LinkedHashMap<>();
         List<GatewayApiRoute> results = zuulRouteService.listAll();
         for (GatewayApiRoute result : results) {

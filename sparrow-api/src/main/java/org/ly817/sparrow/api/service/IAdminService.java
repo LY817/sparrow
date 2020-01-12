@@ -27,7 +27,7 @@ public interface IAdminService {
 
     @ApiOperation(value="token身份验证", notes="token身份验证",produces = "application/json")
     @PostMapping("/admin/auth")
-    User auth(@RequestParam("userName") String userName,@RequestParam("token") String token);
+    User auth(@RequestParam("token") String token);
 
 //    @GetMapping("/{userName}")
 //    User findUserByUserName(@PathVariable("userName") String userName);
