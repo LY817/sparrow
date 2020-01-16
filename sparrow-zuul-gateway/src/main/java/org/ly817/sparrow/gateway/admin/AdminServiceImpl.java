@@ -85,11 +85,15 @@ public class AdminServiceImpl implements IAdminService {
     public User auth(@RequestParam("token") String token) throws APIException {
 //        String authKey = "AUTH_" + userName;
 //        User user = (User) redisTemplate.opsForHash().get(authKey,token);
-        if (jwtOperator.validateToken(token)) {
-            Claims claims = jwtOperator.getClaimsFromToken(token);
-            Long userId = claims.get("userId",Long.class);
-            return fUserService.findUserById(userId);
-        } else {
+        try {
+            if (jwtOperator.validateToken(token)) {
+                Claims claims = jwtOperator.getClaimsFromToken(token);
+                Long userId = claims.get("userId",Long.class);
+                return fUserService.findUserById(userId);
+            } else {
+                throw new APIException(APIExceptionType.AUTH_FAILED);
+            }
+        } catch (APIException | IllegalArgumentException e) {
             throw new APIException(APIExceptionType.AUTH_FAILED);
         }
     }

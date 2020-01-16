@@ -98,7 +98,7 @@ public class AuthFilter extends ZuulFilter {
             // 拦截该请求，不对该请求进行路由
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(500);
-            ctx.setResponseBody(APIResponse.exception(e).toString());
+            ctx.setResponseBody(JSONObject.toJSONString(APIResponse.exception(e)));
             ctx.getResponse().setContentType("application/json;charset=UTF-8");
         }
 

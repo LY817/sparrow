@@ -13,7 +13,7 @@ import java.util.List;
  * Created by LuoYu on 2019/9/24.
  */
 //@RequestMapping
-@FeignClient("sparrow-ms-admin")
+@FeignClient("sparrow-zuul-gateway")
 public interface IAdminService {
 
     //===========用户身份管理=============

@@ -168,7 +168,7 @@ public class PushWebSocketHandler extends SimpleChannelInboundHandler<Object> {
             String[] uriInfos = uri.split("/");
             String token = uriInfos[3];
             String userName = uriInfos[2];
-            User user = adminService.auth(userName,token);
+            User user = adminService.auth(token);
             if (user == null) {
                 ctx.close();
             } else {

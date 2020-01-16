@@ -7,6 +7,13 @@ cmd:
     ip: "127.0.0.1"
     port: 6379
 
+# 微服务负责人联系方式
+swagger:
+  contact:
+    name: "Order Coder"
+    url: "http://github.com"
+    email: "123@126.com"
+
 server:
   port: 10002
 management:

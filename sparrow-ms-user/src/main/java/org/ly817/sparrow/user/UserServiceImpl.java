@@ -75,7 +75,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public User findUserById(Long userId) {
+    public User findUserById(@PathVariable("userId") Long userId) {
         return userDao.selectByPrimaryKey(userId);
     }
 

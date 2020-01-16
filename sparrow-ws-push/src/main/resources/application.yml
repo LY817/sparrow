@@ -4,6 +4,13 @@ cmd:
   push:
     port: 8000
 
+# 微服务负责人联系方式
+swagger:
+  contact:
+    name: "User Coder"
+    url: "http://github.com"
+    email: "123@126.com"
+
 server:
   port: 18000
 management:
@@ -18,9 +25,9 @@ spring:
 ##    url: "192.168.3.17"
 
 
-debug: true
+#debug: true
 rocketmq:
-  name-server: 192.168.56.101:9876
+  name-server: localhost:9876
 
 #  profiles:
 #    active: dev # 会被spring.cloud.socketio.profile指定的远程配置文件替代

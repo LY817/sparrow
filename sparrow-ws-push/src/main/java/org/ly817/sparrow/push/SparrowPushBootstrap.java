@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @RibbonClients({
-        @RibbonClient("name=sparrow-ms-admin"),
+        @RibbonClient("name=sparrow-zuul-gateway"),
 })
 @EnableFeignClients(
         basePackageClasses = {

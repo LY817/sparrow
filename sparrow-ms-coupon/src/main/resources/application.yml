@@ -10,6 +10,13 @@ management:
     web:
       base-path: /
 
+# 微服务负责人联系方式
+swagger:
+  contact:
+    name: "Coupon Coder"
+    url: "http://github.com"
+    email: "123@126.com"
+
 spring:
   application:
     name: sparrow-ms-coupon
