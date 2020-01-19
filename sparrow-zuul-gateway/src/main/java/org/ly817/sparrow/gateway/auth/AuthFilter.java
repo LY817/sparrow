@@ -26,6 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class AuthFilter extends ZuulFilter {
 
+    public final static int ORDER = 0;
+
     private final Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 
     @Autowired

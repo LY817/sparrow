@@ -2,6 +2,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://${cmd.server}:8761/eureka/
+  instance:
+    hostname: localhost
+    metadata-map:
+      vendor: hik
 #spring:
 #  cloud:
 #    config:
