@@ -6,6 +6,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.ly817.sparrow.api.dto.APIResponse;
 import org.ly817.sparrow.api.exception.APIException;
+import org.ly817.sparrow.api.pojo.User;
 import org.ly817.sparrow.api.service.IAdminService;
 import org.ly817.sparrow.gateway.admin.AdminServiceImpl;
 import org.slf4j.Logger;
@@ -91,7 +92,8 @@ public class AuthFilter extends ZuulFilter {
                 ctx.setResponseBody(JSONObject.toJSONString(result));
                 ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
             } else {
-                adminService.auth(token);
+                User user = adminService.auth(token);
+                request.setAttribute("userId",user.getUserId());
             }
         } catch (APIException e) {
             e.printStackTrace();

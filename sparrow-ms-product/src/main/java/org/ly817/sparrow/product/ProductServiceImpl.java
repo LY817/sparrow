@@ -9,6 +9,7 @@ import org.ly817.sparrow.api.service.IProductService;
 import org.ly817.sparrow.common.SnowflakeIdWorker;
 import org.ly817.sparrow.product.dao.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,7 @@ public class ProductServiceImpl implements IProductService {
     public Product addProduct(@RequestBody Product product) throws APIException {
         product.setProductId(idWorker.nextId());
         product.setAddTime(new Date());
+        product.setDesc("屎大颗工业");
         productDao.insert(product);
         return product;
     }
