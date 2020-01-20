@@ -23,7 +23,7 @@
         <module>sparrow-api</module>
         <!--<module>sparrow-gateway</module>-->
         <module>sparrow-ms-order</module>
-        <module>sparrow-ms-inventory</module>
+        <!--<module>sparrow-ms-inventory</module>-->
         <!--<module>sparrow-ms-credit</module>-->
         <module>sparrow-global-starter</module>
         <module>sparrow-common</module>

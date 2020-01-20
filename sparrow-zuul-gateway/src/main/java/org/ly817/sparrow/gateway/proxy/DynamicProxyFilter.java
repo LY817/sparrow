@@ -31,7 +31,8 @@ public class DynamicProxyFilter extends ZuulFilter {
     }
 
     /**
-     * 对某些请求进行动态转发
+     * 对某些特定服务的请求进行动态转发
+     * 比如有多个实现的服务
      */
     @Override
     public boolean shouldFilter() {

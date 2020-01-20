@@ -36,20 +36,22 @@ public class Main {
         String x = "s";
 //        paramTest(x);
 //        System.out.println(x.getB());
-        Consumer<String> consumer = System.out::println;
-        consumer.accept(x);
-        ArrayList arrayList = (ArrayList) Collections.emptyList();
-
-        IntUnaryOperator function = (int i) -> {
-            // 逻辑
-            return i * 2;
-        };
-
-        IntUnaryOperator function1 = i -> i * 2;
-
-        BuilderFactory builderFactory = (a) -> A::new;
-
-        Function<String,String> toStr = c::doStr;
+//        Consumer<String> consumer = System.out::println;
+//        consumer.accept(x);
+//        ArrayList arrayList = (ArrayList) Collections.emptyList();
+//
+//        IntUnaryOperator function = (int i) -> {
+//            // 逻辑
+//            return i * 2;
+//        };
+//
+//        IntUnaryOperator function1 = i -> i * 2;
+//
+//        BuilderFactory builderFactory = (a) -> A::new;
+//
+//        Function<String,String> toStr = c::doStr;
+        Random random = new Random();
+        System.out.println(random.nextInt(100));
 
     }
 
